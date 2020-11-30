@@ -1,15 +1,18 @@
 # Grant Loan
 
+## Overview
+The objective of Grant Loan API is to 
+
 ![alt text](https://github.com/iSPIRT/OCEN/blob/master/Sequence-Diagram/GrantLoan.PNG "Grant Loan")
 
 ## /v3/loan/grantLoanRequest
 
 ### Request Body
 
-|Fields          |Type |Origin|comments|
-|----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
-|requestId       |String|LSP|...|
+|Fields           |Type |Origin|comments|
+|---------------- |:---:|:----:|-------:|
+|metadata         |Object|LSP||
+|requestId        |String|LSP||
 |loanApplicationId|String|LSP|This was sent to the lender through **createLoanApplicationsRequest**|
 
 
@@ -93,7 +96,7 @@
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
+|metadata        |Object|LSP|...|
 |response        |Object|Lender||
 |requestId       |String|LSP|...|
 |loanId          |String|||
@@ -101,15 +104,14 @@
 |createDate      |DateTime|||
 |startDate       |DateTime|||
 |endDate         |String|LSP||
-|type            ||||
-|borrower        ||||
-|lender          ||||
-|collateral      ||||
-|guarantors      ||||
-|applicants      ||||
-|terms           ||||
-|disbursement    ||||
-|repayment       ||||
+|type            |String-enum||CASHFLOW, PERSONAL, HOME, VEHICLE, BUSINESS|
+|lender          |Object|||
+|collateral      |List|||
+|guarantors      |List|||
+|applicants      |List|||
+|terms           |Object|||
+|disbursement    |Object|||
+|repayment       |Object|||
 
 
 
@@ -140,10 +142,32 @@
 |metadata        |...|LSP|...|
 |loanId          |String|||
 |requestId       |String|LSP|...|
-|response        ||||
-|accountStatement||||
+|response        |Object|||
+|accountStatement|Object||schema: Transaction|
 
+#### Transaction (Schema for accountStatement)
 
+```
+"accountStatement": {
+    "date": "2020-03-01T00:00:00Z",
+    "narration": "Repayment of Loan no : xxxxxxx9090",
+    "txnRefNo": "004618602124",
+    "amount": "50000.00",
+    "type": "DEPOSIT",
+    "closingBalance": "50000.00",
+    "url": null,
+    "extensibleData": null
+  }
+ ```
+
+|Fields          |Type |Origin|comments|
+|----------------|:---:|:----:|-------:|
+|date            |DateTime|||
+|narration       |String||Details of the transaction|
+|txnRefNo        |String|||
+|amount          |float|||
+|type            |String-enum||DEPOSIT or WITHDRAWAL|
+|closingBalance  |float|||
 
 
 ---
@@ -153,7 +177,7 @@
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
+|metadata        |Object|LSP|...|
 |borrower        |Object|||
 |requestId       |String|LSP|...|
 
@@ -169,13 +193,13 @@
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
+|metadata        |Object|LSP||
 |response        |Object|Lender||
-|requestId       |String|LSP|...|
-|loans           |Array||Schema: loanDetail|
+|requestId       |String|LSP||
+|loans           |List||Schema: loanDetail|
 
 ### loanDetail
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|loanId          ||||
-|terms           ||||
+|loanId          |String|||
+|terms           |Object|||
