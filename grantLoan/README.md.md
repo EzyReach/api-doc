@@ -1,7 +1,7 @@
 # Grant Loan
 
 ## Overview
-The objective of Grant Loan API is to 
+The objective of Grant Loan API is to approve loan and answer various queries regarding the loan application.
 
 ![alt text](https://github.com/iSPIRT/OCEN/blob/master/Sequence-Diagram/GrantLoan.PNG "Grant Loan")
 
@@ -26,13 +26,13 @@ The objective of Grant Loan API is to
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
-|response        ||Lender||
-|requestId       |String|LSP|...|
-|loanId          ||||
-|loanStatus      ||||
-|terms           ||||
-|repayment       ||||
+|metadata        |Object|LSP||
+|response        |Object|Lender||
+|requestId       |String|LSP||
+|loanId          |String|||
+|loanStatus      |String-enum|Lender|eg PROCESSING|
+|terms           |Object|||
+|repayment       |Object|||
 |disbursement    |String|LSP||
 
 
@@ -45,9 +45,9 @@ The objective of Grant Loan API is to
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
-|loanId          |String|||
-|requestId       |String|LSP|...|
+|metadata        |Object|LSP||
+|loanId          |String|LSP||
+|requestId       |String|LSP||
 
 
 
@@ -60,15 +60,15 @@ The objective of Grant Loan API is to
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
+|metadata        |Object|LSP||
 |response        |Object|Lender||
-|requestId       |String|LSP|...|
+|requestId       |String|LSP||
 |loanId          |String|||
 |loanStatus      |String-enum|||
 |createDate      |DateTime|||
 |startDate       |DateTime|||
 |endDate         |String|LSP||
-|summary         |String
+|summary         |String|||
 
 
 
@@ -80,9 +80,9 @@ The objective of Grant Loan API is to
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
-|loanId          |String|||
-|requestId       |String|LSP|...|
+|metadata        |Object|LSP||
+|loanId          |String|LSP||
+|requestId       |String|LSP||
 
 
 
@@ -96,9 +96,9 @@ The objective of Grant Loan API is to
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |Object|LSP|...|
+|metadata        |Object|LSP||
 |response        |Object|Lender||
-|requestId       |String|LSP|...|
+|requestId       |String|LSP||
 |loanId          |String|||
 |loanStatus      |String-enum|||
 |createDate      |DateTime|||
@@ -124,9 +124,9 @@ The objective of Grant Loan API is to
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
+|metadata        |Object|LSP||
 |loanId          |String|||
-|requestId       |String|LSP|...|
+|requestId       |String|LSP||
 
 
 
@@ -139,11 +139,11 @@ The objective of Grant Loan API is to
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |...|LSP|...|
-|loanId          |String|||
-|requestId       |String|LSP|...|
-|response        |Object|||
-|accountStatement|Object||schema: Transaction|
+|metadata        |Object|LSP||
+|loanId          |String|LSP||
+|requestId       |String|LSP||
+|response        |Object|Lender||
+|accountStatement|Object|Lender|schema: Transaction|
 
 #### Transaction (Schema for accountStatement)
 
@@ -177,9 +177,9 @@ The objective of Grant Loan API is to
 
 |Fields          |Type |Origin|comments|
 |----------------|:---:|:----:|-------:|
-|metadata        |Object|LSP|...|
-|borrower        |Object|||
-|requestId       |String|LSP|...|
+|metadata        |Object|LSP||
+|borrower        |Object|LSP||
+|requestId       |String|LSP||
 
 
 
