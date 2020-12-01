@@ -10,7 +10,7 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
 ### schema of lenderOTPRequest
 
 |Fields            |Type |Origin|comments|mandatory?|
-|----------------  |:---:|:----:|-------:|---------:|
+|----------------  |:---:|:----:|:-------|---------:|
 |metadata          |Object|LSP||
 |requestId         |String|LSP||
 |loanApplicationIds|List|LSP|List of loanApplication Ids for which Loan Acceptance Request has to be triggered|
@@ -32,13 +32,13 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
 ```
 ### credBlock
 |Fields            |Type |Origin|comments|mandatory?|
-|----------------  |:---:|:----:|-------:|---------:|
+|----------------  |:---:|:----:|:-------|---------:|
 |type              |String-enum||String is "OTP"|
 |data              |Object||object is of type OTPBlock|
 
 ### OTPBlock
 |Fields            |Type |Origin|comments|mandatory?|
-|----------------  |:---:|:----:|-------:|---------:|
+|----------------  |:---:|:----:|:-------|---------:|
 |appToken          |String|||
 |otpSessionKey     |String|||
 |maskedPhoneNumber |String||Phone number of the applicant|
@@ -54,7 +54,7 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
 ### schema of lenderOTPResponse
 
 |Fields            |Type |Origin|comments|mandatory?|
-|----------------  |:---:|:----:|-------:|---------:|
+|----------------  |:---:|:----:|:-------|---------:|
 |metadata          |Object|LSP||
 |response          |Object|LSP|response is an object in the format {error:"string"}, eg. {"error":"0"}|
 |requestId         |String|LSP||
@@ -96,8 +96,8 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
   }
 ```
 |Fields          |Type |Origin|comments|mandatory?|
-|----------------|:---:|:----:|-------:|---------:|
-|metadata        |Object|LSP|...|
+|----------------|:---:|:----:|:-------|---------:|
+|metadata        |Object|LSP||
 |requestId       |String|LSP||
 |credBlock       |Object|LSP||
 
@@ -124,7 +124,7 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
 ```
 
 |Fields          |Type |Origin|comments|mandatory?|
-|----------------|:---:|:----:|-------:|---------:|
+|----------------|:---:|:----:|:-------|---------:|
 |metadata        |Object|LSP|...|
 |requestId       |String|LSP||
 |credBlock       |Object|LSP||

@@ -71,8 +71,8 @@ The objective of Loan Application API is to register for a new loan application.
     "orgId": "LSP123"
   }
  ```
-|Fields|Type |Origin|comments|mandatory?|
-|------   |:---:|-----:|-------:|---------:|
+|Fields   |Type |Origin|comments|mandatory?|
+|------   |:---:|:-----:|:-------|---------:|
 |version  |String|LSP||Y|
 |timestamp|DateTime|LSP|This is the time at which loan application is created|Y|
 |traceId  |String|LSP||Y|
@@ -81,7 +81,7 @@ The objective of Loan Application API is to register for a new loan application.
 
 ### loanApplication
 |Fields           |Type |Origin|comments|mandatory?|
-|------           |:---:|:----:|:------:|:--------:|
+|------           |:---:|:----:|:-------|--------:|
 |createDate       |String|LSP|The date on which the applicant applies for a new loan on LSP portal|N|
 |loanApplicationId|DateTime|LSP||Y|
 |offers           |List|Unknown||N|
@@ -113,7 +113,7 @@ The objective of Loan Application API is to register for a new loan application.
       }
 ```
 |Fields               |Type |Origin|comments|mandatory?|
-|------               |:---:|-----:|-------:|---------:|
+|------               |:---:|:----:|:-------|---------:|
 |primaryId            |String|User| of primaryIdType, eg if primaryIdType is MOBILE then primaryId would be mobile number|Y|
 |primaryIdType        |String-enum|User|PAN, MOBILE, AADHAR|Y|
 |secondaryId          |String|User||N|
@@ -156,7 +156,7 @@ The objective of Loan Application API is to register for a new loan application.
         ]
 ```
 |Fields        |Type |Origin|comments|mandatory?|
-|------        |:---:|-----:|-------:|---------:|
+|------        |:---:|:----:|:-------|---------:|
 |type          |String-enum|User|PRIMARY, OTHER|Y|
 |phone         |String|User||Y|
 |description   |String|User||N|
@@ -167,7 +167,7 @@ The objective of Loan Application API is to register for a new loan application.
 
 ##### address
 |Fields   |Type |Origin|comments|mandatory?|
-|------   |:---:|-----:|-------:|---------:|
+|------   |:---:|:----:|:-------|---------:|
 |co       |String||care of||
 |hba      |String||House/Building/Apartment||
 |srl      |String||Street/Road/Lane||
@@ -200,7 +200,7 @@ The objective of Loan Application API is to register for a new loan application.
         ]
 ```
 |Fields          |Type |Origin|comments|mandatory?|
-|------          |:---:|-----:|-------:|---------:|
+|------          |:---:|:----:|:-------|---------:|
 |format          |String-enum|User|DOC, IMAGE, CSV, JSON, XML|Y|
 |refernece       |String|User||Y|
 |source          |String-enum|User||AA, FIP, FIU, FSR, USER, GSTN|Y|
@@ -244,7 +244,7 @@ The objective of Loan Application API is to register for a new loan application.
 ```
 
 |Fields                 |Type |Origin|comments|mandatory?|
-|------                 |:---:|-----:|-------:|---------:|
+|------                 |:---:|:----:|:-------|---------:|
 |collateralPrimaryId    |String|User|collateralPrimaryIdType value|Y|
 |collateralPrimaryIdType|String-enum|User|GST_INVOICE, VIN, OTHER|Y|
 |type                   |String|User|eg GST_INVOICE|Y|
@@ -258,7 +258,7 @@ The objective of Loan Application API is to register for a new loan application.
 
 ##### valuation
 |Fields        |Type |Origin|comments|mandatory?|
-|------        |:---:|-----:|-------:|---------:|
+|------        |:---:|:----:|:-------|---------:|
 |value         |String||Y|
 |currency      |String||Y|
 |date          |DateTime||Y|
@@ -285,7 +285,7 @@ The objective of Loan Application API is to register for a new loan application.
       ]
 ```
 |Fields               |Type |Origin|comments|mandatory?|
-|------               |:---:|-----:|-------:|---------:|
+|------               |:---:|:----:|:-------|---------:|
 |primaryIdType        |String-enum|User|PAN, MOBILE, AADHAAR|Y|
 |primaryId            |String|User|The value of primaryIdType, eg if primaryIdType is PAN then primaryId would be PAN number|Y|
 |category             |String-enum||ORGANIZATION, INDIVIDUAL|Y|
@@ -298,7 +298,7 @@ The objective of Loan Application API is to register for a new loan application.
 
 ### guarantors
 |Fields                  |Type       |Origin|comments|mandatory?|
-|------                  |:---------:|-----:|-------:|---------:|
+|------                  |:---------:|:----:|:-------|---------:|
 |priamryId               |String     |LSP||Y|
 |primaryIdType           |String-enum|USER|PAN, MOBILE, AADHAR|Y|
 |category                |String-enum|USER|ORGANIZATION, INDIVIDUAL|Y|
@@ -310,7 +310,7 @@ The objective of Loan Application API is to register for a new loan application.
 
 ### additionalIdentifier
 |Fields                  |Type |Origin|comments|mandatory?|
-|------                  |:---:|-----:|-------:|---------:|
+|------                  |:---:|:----:|:-------|---------:|
 |id                      |String|USER||Y|
 |additionalIdentifierType|String-enum|USER|PAN, MOBILE, AADHAR|Y|
 
@@ -335,7 +335,7 @@ The objective of Loan Application API is to register for a new loan application.
       }
 ```
 |Fields          |Type |Origin|comments|mandatory?|
-|------          |:---:|-----:|-------:|---------:|
+|------          |:---:|:----:|:-------|---------:|
 |requestedAmount |float|||Y|
 |currency        |String|||Y|
 |description     |String|||N|
@@ -352,18 +352,20 @@ The objective of Loan Application API is to register for a new loan application.
 
 #### tenure
 |Fields   |Type |Origin|comments|mandatory?|
-|------   |:---:|-----:|-------:|---------:|
+|------   |:---:|:----:|:-------|---------:|
 |duration |int|||Y|
 |unit     |String-enum||DAY, MONTH, YEAR|Y|
 
 #### legalAgreement
 |Fields|Type |Origin|comments|mandatory?|
-|------|:---:|-----:|-------:|---------:|
+|------|:---:|:----:|:-------|---------:|
 |type  |String-enum||TEXT, URL|Y|
 |data  |String||Base64 encoded String|Y|
 
 
 ### offer
+|Fields|Type |Origin|comments|mandatory?|
+|------|:---:|:----:|:-------|---------:|
 |type  |String-enum||TEXT, URL|Y|
 |data  |String||Base64 encoded String|
 
@@ -375,14 +377,14 @@ The objective of Loan Application API is to register for a new loan application.
 ### Response
 ### ACK
 |Fields          |Type |Origin|comments|mandatory?|
-|----------------|:---:|:----:|-------:|---------:|
+|----------------|:---:|:----:|:-------|---------:|
 |error           |String|LSP||
 |traceId         |String|LSP||
 |timestamp       |dateTime|LSP||
 
 ### Request Body
 |Fields          |Type |Origin|comments|mandatory?|
-|----------------|:---:|:----:|-------:|---------:|
+|----------------|:---:|:----:|:-------|---------:|
 |metadata        |Object|LSP||Y|
 |response        |Object|Lender||Y|
 |requestId       |String|LSP||Y|
@@ -391,7 +393,7 @@ The objective of Loan Application API is to register for a new loan application.
 
 ### lender
 |Fields               |Type |Origin|comments|mandatory?|
-|----------------     |:---:|:----:|-------:|---------:|
+|----------------     |:---:|:----:|:-------|---------:|
 |primaryIdType        |String-enum|Lender|PAN, MOBILE, AADHAR|Y|
 |primaryId            |String|Lender|primaryIdType value, eg if primaryIdType is PAN then primaryId would be PAN number|Y|
 |category             |String-enum|Lender|ORGANIZATION, INDIVIDUAL|Y|
