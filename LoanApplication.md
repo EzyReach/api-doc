@@ -85,9 +85,9 @@ The objective of Loan Application API is to register for a new loan application.
 |createDate       |String|LSP|The date on which the applicant applies for a new loan on LSP portal|N|
 |loanApplicationId|DateTime|LSP||Y|
 |offers           |List|Unknown||N|
-|type             |String-enum|User|CASHFLOW, PERSONAL, HOME, VEHICLE, BUSINESS|n|
+|type             |String-enum|User|CASHFLOW, PERSONAL, HOME, VEHICLE, BUSINESS|N|
 |borrower         |Object|LSP|The data  of borrower could be stored in the LSP database when the user signup|N|
-|collaterals      |List|LSP||N|
+|collaterals      |List|LSP|The deatils of GST invoices on which the loan is to be raised|N|
 |guarantors       |List|LSP||N|
 |applicants       |List|LSP||N|
 |terms            |Object|LSP||N|
@@ -95,7 +95,7 @@ The objective of Loan Application API is to register for a new loan application.
 |url              |String|||N|
 |extensibleData   |String|||N|
 |loanApplicationStatus|String-enum||ROCESSING, OFFERED, GRANTED, REJECTED, ACTION_REQUIRED|N|
-|lender           |Object|User||N|
+|lender           |Object|User|User may choose from  list of availbale lenders|N|
 
 
 #### borrower
@@ -249,11 +249,17 @@ The objective of Loan Application API is to register for a new loan application.
 |collateralPrimaryIdType|String-enum||GST_INVOICE, VIN, OTHER|Y|
 |type                   |String||eg GST_INVOICE|Y|
 |additionalIdentifiers  |List|||N|
-|valuation              |Object|User||N|
+|valuation              |Object|||N|
 |parties                |List|||Y|
-|documents              |List|User||Y|
+|documents              |List|||Y|
 |url                    |String|||N|
 |extensibleData         |String|||N|
+
+
+##### valuation
+|Fields                 |Type |Origin|comments|mandatory?|
+|------                 |:---:|-----:|-------:|---------:|
+
 
 
 #### applicants
@@ -370,18 +376,19 @@ The objective of Loan Application API is to register for a new loan application.
 ### Request Body
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|-------:|---------:|
-|metadata        |Object|LSP||
-|response        |Object|Lender||
-|requestId       |String|LSP||
-|loanApplications|List|LSP||
-|lender          |Object|Lender||
+|metadata        |Object|LSP||Y|
+|response        |Object|Lender||Y|
+|requestId       |String|LSP||Y|
+|loanApplications|List|LSP||Y|
+|lender          |Object|Lender||Y|
 
 ### lender
 |Fields               |Type |Origin|comments|mandatory?|
 |----------------     |:---:|:----:|-------:|---------:|
-|primaryIdType        |String-enum|Lender|eg "PAN"|
-|primaryId            |String|Lender||
-|category             |String-enum|Lender||
-|contactDetails       |List|Lender||
-|additionalIdentifiers|List|||
-|documents            |List|Lender||
+|primaryIdType        |String-enum|Lender|PAN, MOBILE, AADHAR|Y|
+|primaryId            |String|Lender|primaryIdType value, eg if primaryIdType is PAN then primaryId would be PAN number|Y|
+|category             |String-enum|Lender|ORGANIZATION, INDIVIDUAL|Y|
+|contactDetails       |List|Lender||Y|
+|additionalIdentifiers|List|Lender||Y|
+|documents            |List|Lender||Y|
+|name                 |String|Lender||N|
