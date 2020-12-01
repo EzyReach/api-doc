@@ -201,13 +201,13 @@ The objective of Loan Application API is to register for a new loan application.
 ```
 |Fields          |Type |Origin|comments|mandatory?|
 |------          |:---:|-----:|-------:|---------:|
-|format          |String-enum||DOC, IMAGE, CSV, JSON, XML||
-|refernece       |String||||
-|source          |String-enum|||AA, FIP, FIU, FSR, USER, GSTN|
-|sourceIdentifier|String||||
-|type            |String-enum||||
-|isDataInline    |boolean||GSTN_B2B_INVOICE, GSTN_PROFILE, PAN, AADHAAR, DRIVING_LICENSE, PASSPORT, OTHER||
-|data            |String|||Base64 encoded String|
+|format          |String-enum|User|DOC, IMAGE, CSV, JSON, XML|Y|
+|refernece       |String|User||Y|
+|source          |String-enum|User||AA, FIP, FIU, FSR, USER, GSTN|Y|
+|sourceIdentifier|String|User|example: GSTN|Y|
+|type            |String-enum||GSTN_B2B_INVOICE, GSTN_PROFILE, PAN, AADHAAR, DRIVING_LICENSE, PASSPORT, OTHER|Y|
+|isDataInline    |boolean|User||Y|
+|data            |String|LSP||Base64 encoded String|Y|
 
 
 #### collateral
@@ -245,21 +245,26 @@ The objective of Loan Application API is to register for a new loan application.
 
 |Fields                 |Type |Origin|comments|mandatory?|
 |------                 |:---:|-----:|-------:|---------:|
-|collateralPrimaryId    |String|||Y|
-|collateralPrimaryIdType|String-enum||GST_INVOICE, VIN, OTHER|Y|
-|type                   |String||eg GST_INVOICE|Y|
-|additionalIdentifiers  |List|||N|
+|collateralPrimaryId    |String|User|collateralPrimaryIdType value|Y|
+|collateralPrimaryIdType|String-enum|User|GST_INVOICE, VIN, OTHER|Y|
+|type                   |String|User|eg GST_INVOICE|Y|
+|additionalIdentifiers  |List|User||N|
 |valuation              |Object|||N|
-|parties                |List|||Y|
-|documents              |List|||Y|
-|url                    |String|||N|
+|parties                |List|User||Y|
+|documents              |List|User||Y|
+|url                    |String|User||N|
 |extensibleData         |String|||N|
 
 
 ##### valuation
-|Fields                 |Type |Origin|comments|mandatory?|
-|------                 |:---:|-----:|-------:|---------:|
-
+|Fields        |Type |Origin|comments|mandatory?|
+|------        |:---:|-----:|-------:|---------:|
+|value         |String||Y|
+|currency      |String||Y|
+|date          |DateTime||Y|
+|source        |String||Y|
+|url           |String||N|
+|extensibleData|String||N|
 
 
 #### applicants
@@ -284,9 +289,11 @@ The objective of Loan Application API is to register for a new loan application.
 |primaryIdType        |String-enum|User|PAN, MOBILE, AADHAAR|Y|
 |primaryId            |String|User|The value of primaryIdType, eg if primaryIdType is PAN then primaryId would be PAN number|Y|
 |category             |String-enum||ORGANIZATION, INDIVIDUAL|Y|
-|contactDetails       |Object|User|||
-|additionalIdentifiers|List|User|||
-|documents            |List|User|||
+|contactDetails       |Object|User||Y|
+|additionalIdentifiers|List|User||Y|
+|documents            |List|User||Y|
+|name                 |String|User||N|
+|relationshipWithBorrower|String|User||N|
 
 
 ### guarantors
