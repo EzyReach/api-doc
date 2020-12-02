@@ -1,11 +1,9 @@
-
-
 # Consent APIs
 
 ## Flow Daigram
 ![alt text](https://github.com/EzyReach/api-doc/blob/consent-api/Consent_APIs.png "Consent API")
 
-1.Consent Handle Request
+# 1.Consent Handle Request
    HTTP Verb - POST
    ## API Endpoint - /v3/consent/consentHandleRequest
 
@@ -64,6 +62,68 @@
   }
 }
 ```
+
+# 2.Consent Handle Response
+  HTTP Verb - POST
+  ## API Endpoint - /v3/consent/consentHandleResponse
+
+ This API is invoked by the lenders to send the consent handles created in the AA system as part of the Consent Handle Request API triggered by the LSP.
+
+# 3.Consent Status Request
+   HTTP Verb - POST
+   ## API Endpoint - /v3/consent/consentStatusReques
+   
+   This API is invoked by the LSP to check the status of Consents.
+   
+   ## Request Payload
+
+   |Key               |Type    |Validations |Mandatory |Description|
+   |------------------|:------:|:----------:|:--------:|----------:|
+   |metadata          |Metadata|            |Yes       |Metadata specific to each API response.|
+   |requestId|Alphanumeric|Length 35|Yes|UUID used to tie request and response and for idempotency.|
+   |consent|Consent||Yes|This includes the consent details needed for the loan.|
+   
+   ## Response payload
+   
+   |Key               |Type    |Validations |Mandatory |Description|
+   |----|:----:|:----------:|:--------:|----------:|
+   |ack |ACK   |            |Yes       |Acknowledgement block indicating the receipt and status of request|
+
+
+
+## Sample Request Json
+   
+   ``` {
+   "metadata": {
+       "version": "1.0",
+       "timestamp": "2020-12-01T11:39:57.153Z",
+       "traceId": "l8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+       "orgId": "LSP123"
+   },
+   "requestId": "m8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+   "consent": {
+       "consentHandle": "m8cc6822bd4bbb4eb1b9e1b4996fbff8acb"
+   }
+} 
+```
+
+## Sample Response Json
+```
+{
+  "ack": {
+    "error": "0",
+    "traceId": "n8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+    "timestamp": "2020-12-01T11:39:57.153Z"
+  }
+}
+```
+
+
+# 4. Consent Status Response
+   HTTP Verb - POST
+   ## API Endpoint - /v3/consent/consentStatusResponse
+
+This API is invoked by the lender as a response informing the LSP regarding the status of the consents.
 
 ## Non Functional Requirements
 |API|SLA(seconds)|Timeout (seconds)|Throughput|
