@@ -245,7 +245,18 @@ The objective of Grant Loan API is to approve loan and answer various queries re
       "url": null,
       "extensibleData": null
     },
-    "accountDetails": {
+    "accountDetails": {}
+  }
+```
+|Fields          |Type |Origin|comments|mandatory?|
+|----------------|:---:|:----:|:-------|---------:|
+|plans           |List ||schema: paymentPlan|Y|
+|accountDetails  |List |||Y|
+
+
+##### accountDetails
+```
+"accountDetails": {
       "id": null,
       "description": null,
       "status": null,
@@ -260,15 +271,7 @@ The objective of Grant Loan API is to approve loan and answer various queries re
       "url": null,
       "extensibleData": null
     }
-  }
 ```
-|Fields          |Type |Origin|comments|mandatory?|
-|----------------|:---:|:----:|:-------|---------:|
-|plans           |List ||schema: paymentPlan|Y|
-|accountDetails  |List |||Y|
-
-
-##### accountDetails
 |Fields         |Type |Origin|comments|mandatory?|
 |---------------|:---:|:----:|:-------|---------:|
 |id             |String|||N|
@@ -295,9 +298,9 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|metadata        |Object|LSP|||
-|loanId          |String|LSP|||
-|requestId       |String|LSP|||
+|metadata        |Object|LSP||Y|
+|loanId          |String|LSP||Y|
+|requestId       |String|LSP||Y|
 
 
 
@@ -306,22 +309,107 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 ---
 ## /v3/loan/loanSummaryResponse
 
+```
+{
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2018-12-06T11:39:57.153Z",
+    "traceId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+    "orgId": "LSP123"
+  },
+  "response": {
+    "error": "0"
+  },
+  "requestId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+  "loanId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+  "loanStatus": "GRANTED",
+  "createdDate": "2019-12-30T13:55:00Z",
+  "startDate": "2019-12-30T00:00:00Z",
+  "endDate": "2020-03-01T00:00:00Z",
+  "summary": {}
+}
+```
 ### Request Body
 
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|metadata        |Object|LSP|||
-|response        |Object|Lender|||
-|requestId       |String|LSP|||
-|loanId          |String||||
-|loanStatus      |String-enum||||
-|createDate      |DateTime||||
-|startDate       |DateTime||||
-|endDate         |String|LSP|||
-|summary         |String||||
+|metadata        |Object|LSP||Y|
+|response        |Object|Lender||Y|
+|requestId       |String|LSP||Y|
+|loanId          |String|LSP||Y|
+|loanStatus      |String-enum|Lender|GRANTED, DEFAULTED, COMPLETED, OVERDUE|Y|
+|createDate      |DateTime|||Y|
+|startDate       |DateTime|||Y|
+|endDate         |String|LSP||Y|
+|summary         |Object|||Y|
 
 
-
+#### Summary
+```
+"summary": {
+    "nextRepayment": {
+      "id": "ws4c6822bd4bbb4eb1b9e1b4996fbff8wed",
+      "description": null,
+      "status": "SUCCESS",
+      "useSavedPaymentOption": null,
+      "paymentMethodType": null,
+      "paymentUrl": null,
+      "txnRefNo": null,
+      "url": null,
+      "extensibleData": null,
+      "totalAmount": "5000.00",
+      "principal": "4000.00",
+      "interestAmount": "1000.00",
+      "penalty": "0.00",
+      "fee": "0.00",
+      "date": "2020-03-01T00:00:00Z",
+      "installmentNumber": "1"
+    },
+    "currentRepayment": {
+      "id": "ws4c6822bd4bbb4eb1b9e1b4996fbff8wed",
+      "description": null,
+      "status": "SUCCESS",
+      "useSavedPaymentOption": null,
+      "paymentMethodType": null,
+      "paymentUrl": null,
+      "txnRefNo": null,
+      "url": null,
+      "extensibleData": null,
+      "totalAmount": "5000.00",
+      "principal": "4000.00",
+      "interestAmount": "1000.00",
+      "penalty": "0.00",
+      "fee": "0.00",
+      "date": "2020-10-10",
+      "installmentNumber": "1"
+    },
+    "principalPaid": "10000.00",
+    "interestPaid": "100.00",
+    "penaltyPaid": "10.00",
+    "principalPending": "10000.00",
+    "interestPending": "100.00",
+    "amountDisbursed": "1000.00",
+    "amountRepaid": "1000.00",
+    "tenure": {
+      "duration": "3",
+      "unit": "MONTH"
+    },
+    "description": "short description for the loan"
+  }
+```
+|Fields          |Type |Origin|comments|mandatory?|
+|----------------|:---:|:----:|:-------|---------:|
+|nextPayment     |Object|||Y|
+|currentPayment  |Object|||Y|
+|principalPaid   |float|||Y|
+|interestPaid    |float|||Y|
+|penaltyPaid     |float|||Y|
+|principalPending|float|||Y|
+|interestPending |float|||Y|
+|amountDisbursed |float|||Y|
+|amountRepaid    |float|||Y|
+|tenure          |Object|||Y|
+|description     |String|||Y|
 
 
 ---
@@ -369,31 +457,34 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 ---
 ## /v3/loan/loanStatementRequest
+Requests the lender to fetch transactions for given loan
 
 ### Request Body
 
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|metadata        |Object|LSP|||
-|loanId          |String||||
-|requestId       |String|LSP|||
-
+|metadata        |Object|LSP||Y|
+|loanId          |String|||Y|
+|requestId       |String|LSP||Y|
+|startDate       |DateTime|LSP||N|
+|endDate         |DateTime|LSP||N|
 
 
 
 
 ---
 ## /v3/loan/loanStatementResponse
+Fetches the transactions for given loan
 
 ### Request Body
 
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|metadata        |Object|LSP|||
-|loanId          |String|LSP|||
-|requestId       |String|LSP|||
-|response        |Object|Lender|||
-|accountStatement|Object|Lender|schema: Transaction||
+|metadata        |Object|LSP||Y|
+|loanId          |String|LSP||N|
+|requestId       |String|LSP||Y|
+|response        |Object|Lender||Y|
+|accountStatement|Object|Lender|schema: Transaction|Y|
 
 #### Transaction (Schema for accountStatement)
 
@@ -412,16 +503,19 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|date            |DateTime||||
-|narration       |String||Details of the transaction||
-|txnRefNo        |String||||
-|amount          |float||||
-|type            |String-enum||DEPOSIT,WITHDRAWAL||
-|closingBalance  |float||||
+|date            |DateTime|||Y|
+|narration       |String||Details of the transaction|Y|
+|txnRefNo        |String|||Y|
+|amount          |float|||Y|
+|type            |String-enum||DEPOSIT,WITHDRAWAL|Y|
+|closingBalance  |float|||Y|
+|url             |String|||N|
+|extensibleData  |String|||N|
 
 
 ---
 ## /v3/loan/listLoansRequest
+Requests the lender to fetch all lons raised for the given borrower
 
 ### Request Body
 
@@ -438,6 +532,7 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 ---
 ## /v3/loan/listLoansResponse
+Fetches the list of all loans on for the given borrower
 
 ### Request Body
 
@@ -446,10 +541,10 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 |metadata        |Object|LSP||Y|
 |response        |Object|Lender||Y|
 |requestId       |String|LSP||Y|
-|loans           |List||Schema: loanDetail||
+|loans           |List|Lender|Schema: loanDetail||
 
 ### loanDetail
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|loanId          |String|||
-|terms           |Object|||
+|loanId          |String|||Y|
+|terms           |Object||schema: LoanTerms|Y|
