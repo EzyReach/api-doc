@@ -11,9 +11,9 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 |Fields           |Type |Origin|comments|mandatory?|
 |---------------- |:---:|:----:|:-------|---------:|
-|metadata         |Object|LSP|||
-|requestId        |String|LSP|||
-|loanApplicationId|String|LSP|This was sent to the lender through **createLoanApplicationsRequest**||
+|metadata         |Object|LSP||Y|
+|requestId        |String|LSP||Y|
+|loanApplicationId|String|LSP|This was sent to the lender through **createLoanApplicationsRequest**|Y|
 
 
 
@@ -36,7 +36,33 @@ The objective of Grant Loan API is to approve loan and answer various queries re
   "requestId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
   "loanId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
   "loanStatus": "GRANTED",
-  "terms": {
+  "terms": {},
+  "disbursement": {},
+  "repayment": {},
+  "actionRequired": [],
+  "rejectionDetails": []
+}
+```
+
+### Request Body
+
+|Fields          |Type |Origin|comments|mandatory?|
+|----------------|:---:|:----:|:-------|---------:|
+|metadata        |Object|LSP||Y|
+|response        |Object|Lender||Y|
+|requestId       |String|LSP||Y|
+|loanId          |String|LSP||Y|
+|loanStatus      |String-enum|Lender|GRANTED, REJECTED, DEFAULTED, COMPLETED, ACTION_REQUIRED|Y|
+|terms           |Object||schema: LoanTerms|Y|
+|repayment       |Object|Lender||Y|
+|disbursement    |Object|...||Y|
+|actionRequired  |List|Lender||N|
+|rejectionDetails|List|Lender||N|
+
+
+#### LoanTerms (schema of terms)
+```
+"terms": {
     "requestedAmount": "50000.00",
     "description": null,
     "currency": "INR",
@@ -104,28 +130,28 @@ The objective of Grant Loan API is to approve loan and answer various queries re
         "extensibleData": null
       }
     }
-  },
-  "disbursement": {},
-  "repayment": {},
-  "actionRequired": [],
-  "rejectionDetails": []
-}
+  }
 ```
-
-### Request Body
-
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|metadata        |Object|LSP|||
-|response        |Object|Lender|||
-|requestId       |String|LSP|||
-|loanId          |String||||
-|loanStatus      |String-enum|Lender|GRANTED, REJECTED, DEFAULTED, COMPLETED, ACTION_REQUIRED||
-|terms           |Object||||
-|repayment       |Object||||
-|disbursement    |Object|LSP|||
+|requestedAmount |float|||Y|
+|description     |String|||N|
+|currency        |String|||Y|
+|sanctionedAmount|float|||N|
+|interestType    |String-enum|||N|
+|interestRate    |float|||N|
+|interestAmount  |float|||N|
+|totalAmount     |float|||N|
+|tenure          |Object|||N|
+|legalAgreement  |Object|||N|
+|documents       |List|||N|
+|charges         |Object|||N|
+|url             |String|||N|
+|extensibleData  |String|||N|
 
-### repayment
+
+
+#### repayment
 ```
 "repayment": {
     "plan": {
@@ -165,11 +191,35 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 ```
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
+|plan            |Object||schema: PaymentPlan|Y|
 
-### 
 
+##### PaymentPlan
+|Fields             |Type |Origin|comments|mandatory?|
+|-------------------|:---:|:----:|:-------|---------:|
+|id                 |String|||Y|
+|automatic          |boolean|||Y|
+|scheduleType       |String-enum||ONE_TIME, RECURRING, AS_PRESENTED|Y|
+|noOfInstallments   |int|||Y|
+|totalAmount        |float|||Y|
+|title              |String|||N|
+|shortDescription   |String|||N|
+|description        |String|||N|
+|paymentUrl         |String|||N|
+|payNotAllowed      |boolean|||N|
+|editPlanAllpwed    |boolean|||N|
+|changeMethodAllowed|boolean|||N|
+|frequency          |String-enum||WEEKLY, MONTHLY, QUARTERLY, HALF_YEARLY, YEARLY|N|
+|tenure             |Object|||N|
+|principal          |float|||N|
+|interestAmount     |float|||N|
+|penalty            |float|||N|
+|startDate          |DateTime|||N|
+|status             |String-enum||ACTIVE, INACTIVE, PENDING_AUTH|N|
+|url                |String|||N|
+|extensibleData     |String|||N|
 
-### disbursement
+#### disbursement
 ```
 "disbursement": {
     "plan": {
@@ -212,6 +262,33 @@ The objective of Grant Loan API is to approve loan and answer various queries re
     }
   }
 ```
+|Fields          |Type |Origin|comments|mandatory?|
+|----------------|:---:|:----:|:-------|---------:|
+|plans           |List ||schema: paymentPlan|Y|
+|accountDetails  |List |||Y|
+
+
+##### accountDetails
+|Fields         |Type |Origin|comments|mandatory?|
+|---------------|:---:|:----:|:-------|---------:|
+|id             |String|||N|
+|description    |String|||N|
+|status         |String-enum||ACTIVE, INACTIVE|N|
+|accountDataType|String-enum||ACCOUNT, VPA|N|
+|data           |Object||schema: AccountDetailsData|Y|
+|url            |String|||N|
+|extensibleData |String|||N|
+
+###### AccountDetailsData (schema of data)
+|Fields             |Type |Origin|comments|mandatory?|
+|-------------------|:---:|:----:|:-------|---------:|
+|accountType        |String-enum||SAVINGS, CURRENT, OVERDRAFT|N|
+|accountIFSC        |String|||N|
+|accountNumber      |String|||N|
+|vpa                |String|||N|
+|maskedAccountNumber|String||eg. XXXXXXXXX9090|N|
+
+
 ---
 ## /v3/loan/loanSummaryRequest
 ### Request Body

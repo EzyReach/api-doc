@@ -11,10 +11,10 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
 
 |Fields            |Type |Origin|comments|mandatory?|
 |----------------  |:---:|:----:|:-------|---------:|
-|metadata          |Object|LSP||
-|requestId         |String|LSP||
-|loanApplicationIds|List|LSP|List of loanApplication Ids for which Loan Acceptance Request has to be triggered|
-|credBlock         |Object|LSP||
+|metadata          |Object|LSP||Y|
+|requestId         |String|LSP||Y|
+|loanApplicationIds|List|LSP|List of loanApplication Ids for which Loan Acceptance Request has to be triggered|Y|
+|credBlock         |Object|LSP||Y|
 
 ```
 "credBlock": {
@@ -33,19 +33,19 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
 ### credBlock
 |Fields            |Type |Origin|comments|mandatory?|
 |----------------  |:---:|:----:|:-------|---------:|
-|type              |String-enum||String is "OTP"|
-|data              |Object||object is of type OTPBlock|
+|type              |String-enum||String is "OTP"|Y|
+|data              |Object||schema: OTPBlock|Y|
 
 ### OTPBlock
 |Fields            |Type |Origin|comments|mandatory?|
 |----------------  |:---:|:----:|:-------|---------:|
-|appToken          |String|||
-|otpSessionKey     |String|||
-|maskedPhoneNumber |String||Phone number of the applicant|
-|url               |String|||
-|extensibleData    |String|||
-|otp               |String|||
-|status            |String-enum|||
+|appToken          |String|||N|
+|otpSessionKey     |String|||N|
+|maskedPhoneNumber |String||Phone number of the applicant|N|
+|url               |String|||N|
+|extensibleData    |String|||N|
+|otp               |String|||N|
+|status            |String-enum||SUCCESS, INCORRECT_OTP, INVALID_SESSION|N|
 
 
 ---
@@ -55,10 +55,10 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
 
 |Fields            |Type |Origin|comments|mandatory?|
 |----------------  |:---:|:----:|:-------|---------:|
-|metadata          |Object|LSP||
-|response          |Object|LSP|response is an object in the format {error:"string"}, eg. {"error":"0"}|
-|requestId         |String|LSP||
-|credBlock         |Object|||
+|metadata          |Object|LSP||Y|
+|response          |Object|LSP|eg. {"error":"0"}|Y|
+|requestId         |String|LSP||Y|
+|credBlock         |Object|||Y|
 
 
 ```
@@ -97,9 +97,9 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
 ```
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|metadata        |Object|LSP||
-|requestId       |String|LSP||
-|credBlock       |Object|LSP||
+|metadata        |Object|LSP||Y|
+|requestId       |String|LSP||Y|
+|credBlock       |Object|||Y|
 
 
 
@@ -125,7 +125,7 @@ The Object of Laon Acceptance API is to trigger and verify loan acceptance after
 
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|metadata        |Object|LSP|...|
-|requestId       |String|LSP||
-|credBlock       |Object|LSP||
-|response        |Object|Lender||
+|metadata        |Object|LSP|...|Y|
+|requestId       |String|LSP||Y|
+|credBlock       |Object|||Y|
+|response        |Object|Lender||Y|
