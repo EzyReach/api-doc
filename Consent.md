@@ -64,3 +64,9 @@
   }
 }
 ```
+
+## Non Functional Requirements
+|API|SLA(seconds)|Timeout (seconds)|Throughput|
+|---|------------|-----------------|----------|
+|consentHandleRequest - consentHandleResponse|<2|4|100 Tps|
+|consentStatusRequest - consentStatusResponse|<2|4|100 Tps|
