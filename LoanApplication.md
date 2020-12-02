@@ -89,9 +89,9 @@ The objective of Loan Application API is to register for a new loan application.
 |borrower         |Object|LSP|The data  of borrower could be stored in the LSP database when the user signup|N|
 |collaterals      |List|LSP|The deatils of GST invoices on which the loan is to be raised|N|
 |guarantors       |List|LSP||N|
-|applicants       |List|LSP||N|
-|terms            |Object|LSP||N|
-|description      |String|||N|
+|applicants       |List|LSP|List of applicants and co-applicants|N|
+|terms            |Object|LSP|schema is termDetails|N|
+|description      |String|User/LSP|A short description of the loan application|N|
 |url              |String|||N|
 |extensibleData   |String|||N|
 |loanApplicationStatus|String-enum||ROCESSING, OFFERED, GRANTED, REJECTED, ACTION_REQUIRED|N|
@@ -117,11 +117,11 @@ The objective of Loan Application API is to register for a new loan application.
 |primaryId            |String|User| of primaryIdType, eg if primaryIdType is MOBILE then primaryId would be mobile number|Y|
 |primaryIdType        |String-enum|User|PAN, MOBILE, AADHAR|Y|
 |secondaryId          |String|User||N|
-|additionalIdentifiers|List|User||Y|
-|name                 |String|User|||
+|additionalIdentifiers|List|User|ids other than primary id|Y|
+|name                 |String|User||N|
 |category             |String-enum|User|ORGANIZATION, INDIVIDUAL|Y|
 |contactDetails       |Object|User||Y|
-|platformData         |...|LSP|||
+|platformData         |...|LSP||N|
 |documents            |List|User||Y|
 
 
@@ -166,6 +166,9 @@ The objective of Loan Application API is to register for a new loan application.
 |extensibleData||||N|
 
 ##### address
+
+> It is not clear whether the address would be provided by the user or would be fetched from some source document by the user (Aadhar, PAN, GSTIN etc).
+
 |Fields   |Type |Origin|comments|mandatory?|
 |------   |:---:|:----:|:-------|---------:|
 |co       |String||care of||
@@ -315,7 +318,7 @@ The objective of Loan Application API is to register for a new loan application.
 |additionalIdentifierType|String-enum|USER|PAN, MOBILE, AADHAR|Y|
 
 
-### terms
+### termDetails (schema of terms)
 ```
 "terms": {
         "requestedAmount": "50000.00",
@@ -383,6 +386,46 @@ The objective of Loan Application API is to register for a new loan application.
 |timestamp       |dateTime|LSP||
 
 ### Request Body
+```
+{
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2018-12-06T11:39:57.153Z",
+    "traceId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+    "orgId": "FIU123"
+  },
+  "response": {
+    "error": "0"
+  },
+  "requestId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+  "loanApplications": [
+    {
+      "createdDate": null,
+      "loanApplicationId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+      "offers": null,
+      "type": null,
+      "borrower": null,
+      "collaterals": null,
+      "guarantors": null,
+      "applicants": null,
+      "terms": null,
+      "description": null,
+      "url": null,
+      "lender": {
+        "primaryId": "AWW PA7645M",
+        "primaryIdType": "PAN",
+        "additionalIdentifiers": [],
+        "name": "ABC Bank",
+        "category": "ORGANIZATION",
+        "contactDetails": [],
+        "documents": []
+      },
+      "extensibleData": null,
+      "loanApplicationStatus": "PROCESSING"
+    }
+  ]
+}
+```
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
 |metadata        |Object|LSP||Y|
@@ -392,6 +435,17 @@ The objective of Loan Application API is to register for a new loan application.
 |lender          |Object|Lender||Y|
 
 ### lender
+```
+"lender": {
+        "primaryId": "AWW PA7645M",
+        "primaryIdType": "PAN",
+        "additionalIdentifiers": [],
+        "name": "ABC Bank",
+        "category": "ORGANIZATION",
+        "contactDetails": [],
+        "documents": []
+      }
+```
 |Fields               |Type |Origin|comments|mandatory?|
 |----------------     |:---:|:----:|:-------|---------:|
 |primaryIdType        |String-enum|Lender|PAN, MOBILE, AADHAR|Y|
