@@ -434,22 +434,22 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|metadata        |Object|LSP|||
-|response        |Object|Lender|||
-|requestId       |String|LSP|||
-|loanId          |String||||
-|loanStatus      |String-enum||||
-|createDate      |DateTime||||
-|startDate       |DateTime||||
-|endDate         |String|LSP|||
-|type            |String-enum||CASHFLOW, PERSONAL, HOME, VEHICLE, BUSINESS||
-|lender          |Object||||
-|collateral      |List||||
-|guarantors      |List||||
-|applicants      |List||||
-|terms           |Object||||
-|disbursement    |Object||||
-|repayment       |Object||||
+|metadata        |Object|LSP||Y|
+|response        |Object|Lender||Y|
+|requestId       |String|LSP||Y|
+|loanId          |String|||Y|
+|loanStatus      |String-enum||GRANTED, DEFAULTED, COMPLETED, OVERDUE|Y|
+|createDate      |DateTime|||Y|
+|startDate       |DateTime|||Y|
+|endDate         |String|LSP||Y|
+|type            |String-enum||CASHFLOW, PERSONAL, HOME, VEHICLE, BUSINESS|Y|
+|lender          |Object|||Y|
+|collateral      |List|||Y|
+|guarantors      |List|||Y|
+|applicants      |List|||Y|
+|terms           |Object|||Y|
+|disbursement    |Object|||Y|
+|repayment       |Object|||Y|
 
 
 
