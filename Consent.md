@@ -1,6 +1,6 @@
 # Consent APIs
 
-## Flow Daigram
+## Flow Diagram
 ![alt text](https://github.com/EzyReach/api-doc/blob/consent-api/Consent%20Flow%20Diagram.PNG "Consent API")
 
 # 1.Consent Handle Request
