@@ -7,8 +7,7 @@
    HTTP Verb - POST
    ## API Endpoint - /v3/consent/consentHandleRequest
 
-   This API is used to request the lenders to send a consent request for fetching the bank account statements, GST historical data. The lender (FIU) checks with the AA and     
-   creates a consent handle internally once this API is triggered
+   This API is used to request the lenders to send a consent request for fetching the bank account statements, GST historical data. The lender (FIU) checks with the AA and     creates a consent handle internally once this API is triggered
 
    ## Request Payload
 
