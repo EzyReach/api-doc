@@ -1,7 +1,7 @@
 # Consent APIs
 
 ## Flow Daigram
-![alt text](https://github.com/EzyReach/api-doc/blob/consent-api/Consent_APIs.png "Consent API")
+![alt text](https://github.com/EzyReach/api-doc/blob/consent-api/Consent%20Flow%20Diagram.PNG "Consent API")
 
 # 1.Consent Handle Request
    HTTP Verb - POST
