@@ -82,8 +82,8 @@ The objective of Loan Application API is to register for a new loan application.
 ### loanApplication
 |Fields           |Type |Origin|comments|mandatory?|
 |------           |:---:|:----:|:-------|--------:|
-|createDate       |String|LSP|The date on which the applicant applies for a new loan on LSP portal|N|
-|loanApplicationId|DateTime|LSP||Y|
+|createDate       |DateTime|LSP|The date on which the applicant applies for a new loan on LSP portal|N|
+|loanApplicationId|String|LSP||Y|
 |offers           |List|Unknown||N|
 |type             |String-enum|User|CASHFLOW, PERSONAL, HOME, VEHICLE, BUSINESS|N|
 |borrower         |Object|LSP|The data  of borrower could be stored in the LSP database when the user signup|N|
