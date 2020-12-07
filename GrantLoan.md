@@ -6,6 +6,7 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 ![alt text](https://github.com/iSPIRT/OCEN/blob/master/Sequence-Diagram/GrantLoan.PNG "Grant Loan")
 
 ## /v3/loan/grantLoanRequest
+Requests the lender to grant the loan with given loan application id
 
 ### Request Body
 
@@ -369,8 +370,9 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 ---
 ## /v3/loan/loanSummaryRequest
-### Request Body
+Requests the lender to fetch the summary of a loan with given loan id
 
+### Request Body
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
 |metadata        |Object|LSP||Y|
@@ -383,6 +385,7 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 ---
 ## /v3/loan/loanSummaryResponse
+Fetches the summary of a loan with given loan id
 
 ```
 {
@@ -501,8 +504,9 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 ---
 ## /v3/loan/getLoanRequest
-### Request Body
+Requests the lender to fetch the details of loan with given loan id
 
+### Request Body
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
 |metadata        |Object|LSP|||
@@ -516,9 +520,9 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 ---
 ## /v3/loan/getLoanResponse
+Fetches the details of loan with given loan id
 
 ### Request Body
-
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
 |metadata        |Object|LSP||Y|
@@ -544,7 +548,7 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 ---
 ## /v3/loan/loanStatementRequest
-Requests the lender to fetch transactions for given loan
+Requests the lender to fetch transactions for given loan between given dates
 
 ### Request Body
 
@@ -602,10 +606,9 @@ Fetches the transactions for given loan
 
 ---
 ## /v3/loan/listLoansRequest
-Requests the lender to fetch all lons raised for the given borrower
+Requests the lender to fetch all loans raised for the given borrower between given dates
 
 ### Request Body
-
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
 |metadata        |Object|LSP||Y|
