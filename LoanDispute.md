@@ -1,6 +1,7 @@
 # Loan Dispute API
 
 ## Overview
+The purspose of Laon Dispute API is to resolve any arising disputes
 
 ## /v3/loan/dispute/raiseDisputeRequest
 ```
