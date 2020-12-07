@@ -21,7 +21,7 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 ---
 ## /v3/loan/grantLoanResponse
-![alt text](https://github.com/iSPIRT/OCEN/blob/master/Sequence-Diagram/GrantLoan.PNG "Grant Loan")
+![alt text](https://github.com/EzyReach/api-doc/blob/loan-api/grantLoanResponse.PNG "grantLoanResponse Request Body")
 
 ```
 {
