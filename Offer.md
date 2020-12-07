@@ -1,4 +1,4 @@
-#Offer API
+# Offer API
 
 ## Overview
 
@@ -78,7 +78,7 @@
 |collaterals      |List       |LSP     |The deatils of GST invoices on which the loan is to be raised|N|
 |guarantors       |List       |LSP     ||N|
 |applicants       |List       |LSP     |List of applicants and co-applicants|N|
-|terms            |Object     |LSP     |schema is termDetails|N|
+|terms            |Object     |LSP     |schema: TermDetails|N|
 |description      |String     |User/LSP|A short description of the loan application|N|
 |url              |String     |        ||N|
 |extensibleData   |String     |        ||N|
@@ -92,54 +92,7 @@
           "id": "y8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
           "description": "A short description of the offer",
           "validTill": "2018-12-06T00:00:00.000Z",
-          "terms": {
-            "requestedAmount": "50000.00",
-            "currency": "INR",
-            "sanctionedAmount": "50000.00",
-            "interestType": "FIXED",
-            "interestRate": "12.00",
-            "interestAmount": "6000.00",
-            "totalAmount": "56000.00",
-            "tenure": {
-              "duration": "3",
-              "unit": "MONTH"
-            },
-            "legalAgreement": {
-              "type": "TEXT",
-              "data": "<Base64 Encoded Data>"
-            },
-            "charges": {
-              "prepayment": {
-                "chargeType": "RATE_BASED",
-                "description": "Description of charge calculation",
-                "data": {
-                  "rate": "6",
-                  "applicableParameter": "TOTAL_LOAN_AMOUNT"
-                }
-              },
-              "bounce": {
-                "chargeType": "FIXED_AMOUNT",
-                "description": "Description of charge calculation",
-                "data": {
-                  "amount": "3000.00"
-                }
-              },
-              "latePayment": {
-                "chargeType": "FIXED_AMOUNT",
-                "description": "Description of charge calculation",
-                "data": {
-                  "amount": "3000.00"
-                }
-              },
-              "processing": {
-                "chargeType": "FIXED_AMOUNT",
-                "description": "Description of charge calculation",
-                "data": {
-                  "amount": "3000.00"
-                }
-              }
-            }
-          },
+          "terms": {},
           "disbursement": {
             "plans": [
               {
@@ -194,14 +147,88 @@
 |id            |String|Lender||Y|
 |description   |String|Lender||N|
 |validTill     |DateTime|Lender||Y|
-|terms         |Object|Lender||Y|
+|terms         |Object|Lender|schema: LoanTerms|Y|
 |disbursement  |Object|Lender||Y|
 |repayment     |Object|Lender||Y|
 |documents     |List|||Y|
 |url           |String|||N|
 |extensibleData|String|||N|
 
->The details of terms, disbursement, repayment, documents are available in LoanApplication API docs.
+>The details of disbursement, repayment, documents are available in LoanApplication API docs.
+
+##### LoanDetails
+|Fields   |Type |Origin|comments|mandatory?|
+|-------- |:---:|:----:|:-------|---------:|
+|loanId   |String|||Y|
+|loanTerms|Object|||Y|
+
+###### LoanTerms
+```
+"terms": {
+            "requestedAmount": "50000.00",
+            "currency": "INR",
+            "sanctionedAmount": "50000.00",
+            "interestType": "FIXED",
+            "interestRate": "12.00",
+            "interestAmount": "6000.00",
+            "totalAmount": "56000.00",
+            "tenure": {
+              "duration": "3",
+              "unit": "MONTH"
+            },
+            "legalAgreement": {
+              "type": "TEXT",
+              "data": "<Base64 Encoded Data>"
+            },
+            "charges": {
+              "prepayment": {
+                "chargeType": "RATE_BASED",
+                "description": "Description of charge calculation",
+                "data": {
+                  "rate": "6",
+                  "applicableParameter": "TOTAL_LOAN_AMOUNT"
+                }
+              },
+              "bounce": {
+                "chargeType": "FIXED_AMOUNT",
+                "description": "Description of charge calculation",
+                "data": {
+                  "amount": "3000.00"
+                }
+              },
+              "latePayment": {
+                "chargeType": "FIXED_AMOUNT",
+                "description": "Description of charge calculation",
+                "data": {
+                  "amount": "3000.00"
+                }
+              },
+              "processing": {
+                "chargeType": "FIXED_AMOUNT",
+                "description": "Description of charge calculation",
+                "data": {
+                  "amount": "3000.00"
+                }
+              }
+            }
+          }
+```
+|Fields          |Type  |Origin|comments|mandatory?|
+|----------------|:----:|:----:|:-------|---------:|
+|requestedAmount |float |||Y|
+|description     |String|||N|
+|currency        |String|||Y|
+|sanctionedAmount|float |||N|
+|interestType    |String-enum||FIXED, FLOATING|N|
+|interestRate    |float|||N|
+|interestAmount  |float|||N|
+|totalAmount     |float|||N|
+|tenure          |Object|||N|
+|legalAgreement  |Object|||N|
+|documents       |List|||N|
+|charges         |Object|||N|
+|url             |String|||N|
+|extensibleData  |String|||N|
 
 ---
 
