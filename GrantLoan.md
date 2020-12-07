@@ -21,6 +21,7 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 
 ---
 ## /v3/loan/grantLoanResponse
+![alt text](https://github.com/iSPIRT/OCEN/blob/master/Sequence-Diagram/GrantLoan.PNG "Grant Loan")
 
 ```
 {
@@ -57,7 +58,7 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 |repayment       |Object|Lender||Y|
 |disbursement    |Object|...||Y|
 |actionRequired  |List|Lender||N|
-|rejectionDetails|List|Lender||N|
+|rejectionDetails|List|Lender|FRAUD, DOC_IRREGULARITIES, LOW_CREDIT_SCORE, OTHERS|N|
 
 
 #### LoanTerms (schema of terms)
@@ -290,6 +291,30 @@ The objective of Grant Loan API is to approve loan and answer various queries re
 |accountNumber      |String|||N|
 |vpa                |String|||N|
 |maskedAccountNumber|String||eg. XXXXXXXXX9090|N|
+
+
+#### RejectionDetail
+|Fields        |Type |Origin|comments|mandatory?|
+|--------------|:---:|:----:|:-------|---------:|
+|reason        |String-enum|Lender|FRAUD, DOC_IRREGULARITIES, LOW_CREDIT_SCORE, OTHERS|Y|
+|description   |String|Lender|eg. Credit score below 600|Y|
+|url           |String|Lender||N|
+|extensibleData|String|Lender||N|
+
+
+#### ActionRequired
+|Fields     |Type |Origin|comments|mandatory?|
+|-----------|:---:|:----:|:-------|---------:|
+|actionType |String-enum|Lender|ADDDOCUMENT, RESUBMITDOCUMENT, OTHER|Y|
+|description|String|Lender|eg. DL number not visible|Y|
+|reference  |Object|Lender||N|
+
+
+##### Reference
+|Field |Type |Origin|comments|mandatory?|
+|------|:---:|:----:|:-------|---------:|
+|object|String|||Y|
+|value |String|||Y|
 
 
 ---
