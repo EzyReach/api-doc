@@ -173,3 +173,6 @@ This API is invoked by the lender as a response informing the LSP regarding the 
 |---|------------|-----------------|----------|
 |consentHandleRequest - consentHandleResponse|<2|4|100 Tps|
 |consentStatusRequest - consentStatusResponse|<2|4|100 Tps|
+
+#5 ConsentHandleRequest And ConsentStatusRequest For Monitoring
+ These API's are same as above. Once the Repayment was setup successfully ,LSP is going request or enable the regular consent monitoring,which will happen through Lender.This time ConsentFetchType value would be Periodic. 
