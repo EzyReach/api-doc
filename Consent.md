@@ -114,7 +114,34 @@
   ## API Endpoint - /v3/consent/consentHandleResponse
 
  This API is invoked by the lenders to send the consent handles created in the AA system as part of the Consent Handle Request API triggered by the LSP.
+ 
+ ## Request Payload
 
+   |Key               |Type    |Validations |Mandatory |Origin      |Description|
+   |------------------|:------:|:----------:|:--------:|:----------:|----------:|
+   |metadata          |Metadata|            |Yes       |Lender|Metadata specific to each API response.|
+   |response          |Response ||Yes|Lender|Status of response. Whether success or has encountered error|
+   |requestId|Alphanumeric|Length 35|Yes|Lender|UUID used to tie request and response and for idempotency.|
+   |consent|Consent||Yes|Lender|Consent details shared back by the lender.|
+
+  ## Sample Request Json
+  ```
+  {
+   "metadata": {
+       "version": "1.0",
+       "timestamp": "2018-12-06T11:39:57.153Z",
+       "traceId": "h8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+       "orgId": "FIU123"
+   },
+   "response": {
+       "error": "0"
+   },
+   "requestId": "i8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+   "consent": {
+       "consentHandle": "j8cc6822bd4bbb4eb1b9e1b4996fbff8acb"
+   }
+}
+  ```
 # 3.Consent Status Request
    HTTP Verb - POST
    ## API Endpoint - /v3/consent/consentStatusReques
