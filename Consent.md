@@ -154,7 +154,7 @@
    |------------------|:------:|:----------:|:--------:|----------:|
    |metadata          |Metadata|            |Yes       |Metadata specific to each API response.|
    |requestId|Alphanumeric|Length 35|Yes|UUID used to tie request and response and for idempotency.|
-   |consent|Consent||Yes|This includes the consent details needed for the loan.|
+   |consent|Consent||Yes|This includes the consent details needed for the loan.Mainly consent handle field shuould be passed which was provided by the lender as part of the Consent Handle Response|
    
    ## Response payload
    
