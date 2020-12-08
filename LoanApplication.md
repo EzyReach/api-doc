@@ -80,17 +80,17 @@ The objective of Loan Application API is to register for a new loan application.
 
 
 ### loanApplication
-|Fields           |Type |Origin|comments|mandatory?|
-|------           |:---:|:----:|:-------|--------:|
-|createDate       |DateTime|LSP|The date on which the applicant applies for a new loan on LSP portal|N|
-|loanApplicationId|String|LSP||Y|
-|offers           |List|Unknown||N|
-|type             |String-enum|User|CASHFLOW, PERSONAL, HOME, VEHICLE, BUSINESS|N|
-|borrower         |Object|LSP|The data  of borrower could be stored in the LSP database when the user signup|N|
-|collaterals      |List|LSP|The deatils of GST invoices on which the loan is to be raised|N|
-|guarantors       |List|LSP||N|
-|applicants       |List|LSP|List of applicants and co-applicants|N|
-|terms            |Object|LSP|schema is termDetails|N|
+|Fields           |Type        |Origin|comments|mandatory?|
+|------           |:----------:|:----:|:-------|--------:|
+|createDate       |DateTime    |LSP|The date on which the applicant applies for a new loan on LSP portal|N|
+|loanApplicationId|String      |LSP||Y|
+|offers           |List<Object>|Unknown||N|
+|type             |String-enum |User|CASHFLOW, PERSONAL, HOME, VEHICLE, BUSINESS|N|
+|borrower         |Object      |LSP|The data  of borrower could be stored in the LSP database when the user signup|N|
+|collaterals      |List<Object>|LSP|The deatils of GST invoices on which the loan is to be raised|N|
+|guarantors       |List<Object>|LSP||N|
+|applicants       |List<Object>|LSP|List of applicants and co-applicants|N|
+|terms            |Object      |Unknown|schema: TermDetails|N|
 |description      |String|User/LSP|A short description of the loan application|N|
 |url              |String|||N|
 |extensibleData   |String|||N|
@@ -117,15 +117,15 @@ The objective of Loan Application API is to register for a new loan application.
 |primaryId            |String|User| of primaryIdType, eg if primaryIdType is MOBILE then primaryId would be mobile number|Y|
 |primaryIdType        |String-enum|User|PAN, MOBILE, AADHAR|Y|
 |secondaryId          |String|User||N|
-|additionalIdentifiers|List|User|ids other than primary id|Y|
+|additionalIdentifiers|List<Object>|User|ids other than primary id|Y|
 |name                 |String|User||N|
 |category             |String-enum|User|ORGANIZATION, INDIVIDUAL|Y|
-|contactDetails       |Object|User||Y|
-|platformData         |...|LSP||N|
-|documents            |List|User||Y|
+|contactDetails       |List<Object>|User||Y|
+|platformData         |...|Unknown||N|
+|documents            |List<Object>|User||Y|
 
 
-#### contactDetails
+##### contactDetails
 ```
 "contactDetails": [
           {
@@ -163,11 +163,11 @@ The objective of Loan Application API is to register for a new loan application.
 |email         |String|User||Y|
 |address       |Object|||Y|
 |url           |String|||N|
-|extensibleData||||N|
+|extensibleData|String|||N|
 
-##### address
+###### address
 
-> It is not clear whether the address would be provided by the user or would be fetched from some source document by the user (Aadhar, PAN, GSTIN etc).
+> Address would be fetched by GSTIN
 
 |Fields   |Type |Origin|comments|mandatory?|
 |------   |:---:|:----:|:-------|---------:|
@@ -287,29 +287,29 @@ The objective of Loan Application API is to register for a new loan application.
         }
       ]
 ```
-|Fields               |Type |Origin|comments|mandatory?|
-|------               |:---:|:----:|:-------|---------:|
-|primaryIdType        |String-enum|User|PAN, MOBILE, AADHAAR|Y|
-|primaryId            |String|User|The value of primaryIdType, eg if primaryIdType is PAN then primaryId would be PAN number|Y|
-|category             |String-enum||ORGANIZATION, INDIVIDUAL|Y|
-|contactDetails       |Object|User||Y|
-|additionalIdentifiers|List|User||Y|
-|documents            |List|User||Y|
-|name                 |String|User||N|
-|relationshipWithBorrower|String|User||N|
+|Fields               |Type        |Origin|comments|mandatory?|
+|------               |:----------:|:----:|:-------|---------:|
+|primaryIdType        |String-enum |User|PAN, MOBILE, AADHAAR|Y|
+|primaryId            |String      |User|The value of primaryIdType, eg if primaryIdType is PAN then primaryId would be PAN number|Y|
+|category             |String-enum ||ORGANIZATION, INDIVIDUAL|Y|
+|contactDetails       |Object      |User||Y|
+|additionalIdentifiers|List<Object>|User||Y|
+|documents            |List<Object>|User||Y|
+|name                 |String      |User||N|
+|relationshipWithBorrower|String   |User||N|
 
 
 ### guarantors
-|Fields                  |Type       |Origin|comments|mandatory?|
-|------                  |:---------:|:----:|:-------|---------:|
-|priamryId               |String     |LSP||Y|
-|primaryIdType           |String-enum|USER|PAN, MOBILE, AADHAR|Y|
-|category                |String-enum|USER|ORGANIZATION, INDIVIDUAL|Y|
-|contactDetails          |Object     |User||Y|
-|relationshipWithBorrower|String     |User||N|
-|additionalIdentifiers   |List		 |USER|identification in addition to primary id|Y|
-|documents               |List       |User||Y|
-|name                    |String     |User||N|
+|Fields                  |Type        |Origin|comments|mandatory?|
+|------                  |:----------:|:----:|:-------|---------:|
+|priamryId               |String      |LSP||Y|
+|primaryIdType           |String-enum |USER|PAN, MOBILE, AADHAR|Y|
+|category                |String-enum |USER|ORGANIZATION, INDIVIDUAL|Y|
+|contactDetails          |Object      |User||Y|
+|relationshipWithBorrower|String      |User||N|
+|additionalIdentifiers   |List<Object>|USER|identification in addition to primary id|Y|
+|documents               |List<Object>|User||Y|
+|name                    |String      |User||N|
 
 ### additionalIdentifier
 |Fields                  |Type |Origin|comments|mandatory?|
