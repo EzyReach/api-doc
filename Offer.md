@@ -5,6 +5,9 @@
 ![alt text](https://github.com/iSPIRT/OCEN/blob/master/Sequence-Diagram/OfferAPIs.PNG "OfferAPI")
 
 ## /v3/offer/generateOffersRequest
+Requests the lender to generate offers for given loan ids
+
+### Request payload
 ```
 {
   "metadata": {
@@ -19,15 +22,17 @@
   ]
 }
 ```
-|Fields            |Type |Origin|comments|mandatory?|
-|----------------  |:---:|:----:|:-------|---------:|
-|metadata          |Object|LSP||Y|
-|requestId         |String|LSP||Y|
-|loanApplicationIds|List|LSP||Y|
+|Fields            |Type        |Origin|comments|mandatory?|
+|----------------  |:----------:|:----:|:-------|---------:|
+|metadata          |Object      |LSP||Y|
+|requestId         |String      |LSP||Y|
+|loanApplicationIds|List<String>|LSP|The Loan Ids for which the offers has to be generated|Y|
 
 ---
 
 ## /v3/offer/generateOffersResponse
+Generates offers for the given loan ids
+
 ```
 {
   "metadata": {
@@ -59,12 +64,12 @@
   ]
 }
 ```
-|Fields          |Type |Origin|comments|mandatory?|
-|----------------|:---:|:----:|:-------|---------:|
-|metadata        |Object|Lender||Y|
-|requestId       |String|LSP||Y|
-|response        |Object|Lender||Y|
-|loanApplications|List|||Y|
+|Fields          |Type        |Origin|comments|mandatory?|
+|----------------|:----------:|:----:|:-------|---------:|
+|metadata        |Object      |Lender||Y|
+|requestId       |String      |LSP||Y|
+|response        |Object      |Lender||Y|
+|loanApplications|List<Object>|||Y|
 
 
 ### loanApplication
@@ -142,25 +147,25 @@
         }
       ]
 ```
-|Fields        |Type |Origin|comments|mandatory?|
-|------        |:---:|:----:|:-------|--------:|
-|id            |String|Lender||Y|
-|description   |String|Lender||N|
-|validTill     |DateTime|Lender||Y|
-|terms         |Object|Lender|schema: LoanTerms|Y|
-|disbursement  |Object|Lender||Y|
-|repayment     |Object|Lender||Y|
-|documents     |List|||Y|
-|url           |String|||N|
-|extensibleData|String|||N|
+|Fields        |Type        |Origin|comments|mandatory?|
+|------        |:----------:|:----:|:-------|--------:|
+|id            |String      |Lender||Y|
+|description   |String      |Lender|A short description of the offer|N|
+|validTill     |DateTime    |Lender||Y|
+|terms         |Object      |Lender|schema: LoanTerms|Y|
+|disbursement  |Object      |Lender||Y|
+|repayment     |Object      |Lender||Y|
+|documents     |List<Object>|||Y|
+|url           |String      |||N|
+|extensibleData|String      |||N|
 
 >The details of disbursement, repayment, documents are available in LoanApplication API docs.
 
 ##### LoanDetails
 |Fields   |Type |Origin|comments|mandatory?|
 |-------- |:---:|:----:|:-------|---------:|
-|loanId   |String|||Y|
-|loanTerms|Object|||Y|
+|loanId   |String|LSP||Y|
+|loanTerms|Object|Unknown||Y|
 
 ###### LoanTerms
 ```
@@ -233,6 +238,7 @@
 ---
 
 ## /v3/offer/setOffersRequest
+Requests the lender to set the given offer for given loanApplication id
 ```
 {
   "metadata": {
@@ -264,6 +270,7 @@
 |offer            |Object|||Y|
 
 ## /v3/offer/setOffersResponse
+Confimation from the lender for given offer for given loanApplication id
 ```
 {
   "metadata": {
