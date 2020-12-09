@@ -24,6 +24,14 @@
    |requestId|Alphanumeric|Length 35|Yes|LSP|UUID used to tie request and response and for idempotency.|
    |consent|Consent||Yes|LSP|This includes the consent details needed for the loan.|
    
+   ## Questions
+   ```
+    1.How consent will be mapped each application id.? With the current representation all loan applications of same user will have one consent request and consent handle(received it from lender as part of the consent request)?
+    2.What would be the criteria to link the multiple loan applications of same user with one consent request.?
+    3.Why lsp information is linked to consent , but not to the consent request.?(May be the same consent object will be used when lender starts comunicating with AA)
+    3.How user will get to know to which lender he/she is giving the consent when the consent sent to multiple lenders.(may be this would be the scope of AA).
+   ```
+   
    ## Sample Request Json
    
    ``` {
@@ -74,7 +82,10 @@
 |extensibleData|JSON OBJECT|LSP|N|Incase if any lender specific data or additional data  required in future we can accommodate in this object without disturbing the original structure|
 
 
-   
+   ## Questions
+   ```
+    1.source of the isAggregationEnabled and consentAggregationId is not clear.
+   ```
    
    ### loan application id
 
