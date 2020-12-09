@@ -53,13 +53,14 @@
 } 
 ```
 ## Questions
-   ```
-    1.How consent will be mapped each application id.? With the current representation all loan applications of same user will have one consent request and consent handle(received it from lender as part of the consent request)?
-    2.What would be the criteria to link the multiple loan applications of same user with one consent request.?
-    3.Why lsp information is linked to consent , but not to the consent request.?(May be the same consent object will be used when lender starts comunicating with AA)
-    4.How user will get to know to which lender he/she is giving the consent when the consent sent to multiple lenders.(may be this would be the scope of AA).
-    5.source for the isAggregationEnabled and consentAggregationId fields are Unknown.
-   ```
+ 
+ 1. How consent will be mapped each application id.? With the current representation all loan applications of same user will have one consent request and consent handle(received it from lender as part of the consent request)?
+ 2. What would be the criteria to link the multiple loan applications of same user with one consent request.?
+ 3. Why lsp information is linked to consent , but not to the consent request.?(May be the same consent object will be used when lender starts comunicating with AA)
+ 4. How user will get to know to which lender he/she is giving the consent when the consent sent to multiple lenders.(may be this would be the scope of AA).
+ 5. source for the isAggregationEnabled and consentAggregationId fields are Unknown.
+ 
+  
    
    ### metadata
 
