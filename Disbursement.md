@@ -1,8 +1,10 @@
 # Disbursement
 
 ## Overview
+The purpose of this API is to set disbursement plan and fetch details regarding the same.
 
 ## /v3/disbursement/setDisbursementPlanRequest
+Requests the lender to set a disbursement plan for the given Loan Application Id
 ```
 {
   "metadata": {
@@ -83,6 +85,8 @@
 ---
 
 ## /v3/disbursement/setDisbursementPlanResponse
+Sets a disbursement plan for given Loan Application Id
+
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:------:|---------:|
 |metadata        |Object|LSP||Y|
@@ -90,10 +94,42 @@
 |response        |String|Lender||Y|
 |plan            |Object|||Y|
 
+### PaymentPlant
+```
+"plan": {
+    "id": "a8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+    "title": null,
+    "shortDescription": null,
+    "description": null,
+    "paymentUrl": null,
+    "automatic": "false",
+    "payNowAllowed": null,
+    "editPlanAllowed": null,
+    "changeMethodAllowed": null,
+    "scheduleType": "ONE_TIME",
+    "frequency": null,
+    "noOfInstallments": "1",
+    "tenure": {
+      "duration": null,
+      "unit": null
+    },
+    "principal": null,
+    "interestAmount": null,
+    "penalty": null,
+    "startDate": null,
+    "status": "ACTIVE",
+    "totalAmount": "10000.00",
+    "url": null,
+    "extensibleData": null
+  }
+```
+
 
 ---
 
 ## /v3/disbursement/setDisbursementAccountRequest
+Requests the lender to register the account where loan amount will be disbursed 
+
 ```
 {
   "metadata": {
@@ -114,7 +150,7 @@
 |requestId        |String|LSP||Y|
 |loanApplicationId|String|LSP||N|
 |loanId           |String|LSP||N|
-|account          |Object||schema: AccountDetails|Y|
+|account          |Object|LSP|schema: AccountDetails|Y|
 
 
 ### AccountDetails
@@ -149,10 +185,10 @@
 |Fields             |Type |Origin|comments|mandatory?|
 |-------------------|:---:|:----:|:-------|---------:|
 |accountType        |String-enum||SAVINGS, CURRENT, OVERDRAFT|N|
-|accountIFSC        |String|||N|
-|accountNumber      |String|||N|
-|vpa                |String||virtual payment address|N|
-|maskedAccountNumber|String||eg. XXXXXXXXX9090|N|
+|accountIFSC        |String|LSP||N|
+|accountNumber      |String|LSP||N|
+|vpa                |String|LSP|virtual payment address|N|
+|maskedAccountNumber|String|LSP|eg. XXXXXXXXX9090|N|
 
 
 
@@ -160,19 +196,40 @@
 ---
 
 ## /v3/disbursement/setDisbursementAccountResponse
+Registers the account where loan amount will be disbursed
+
 |Fields           |Type |Origin|comments|mandatory?|
 |-----------------|:---:|:----:|:------:|---------:|
 |metadata         |Object|LSP||Y|
 |requestId        |String|LSP||Y|
 |response         |String|Lender||N|
-|account          |Object||schema: AccountDetails|Y|
+|account          |Object|LSP|schema: AccountDetails|Y|
 
-
+### AccountDetails
+```
+"account": {
+    "id": "a8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+    "description": null,
+    "status": "ACTIVE",
+    "accountDataType": "ACCOUNT",
+    "data": {
+      "accountType": null,
+      "accountIFSC": null,
+      "accountNumber": null,
+      "vpa": null,
+      "maskedAccountNumber": null
+    },
+    "url": null,
+    "extensibleData": null
+  }
+```
 
 
 ---
 
 ## /v3/disbursement/triggerDisbursementRequest
+Requests the lender to start disbursement
+
 ```
 {
   "metadata": {
@@ -192,7 +249,6 @@
 |loanId    |String|LSP||Y|
 |requestId |String|LSP||Y|
 |payment   |Object|LSP||Y|
-
 
 ### Payment
 ```
@@ -241,19 +297,42 @@
 ---
 
 ## /v3/disbursement/triggerDisbursementResponse
+Starts the disbursement process
+
 |Fields    |Type |Origin|comments|mandatory?|
 |----------|:---:|:----:|:------:|---------:|
 |metadata  |Object|||Y|
-|response  |Object|||Y|
+|response  |Object|Lender||Y|
 |requestId |String|||Y|
-|payment   |Object|||Y|
+|payment   |Object|Lender||Y|
 
-
+```
+"payment": {
+    "id": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+    "description": null,
+    "date": "2018-12-06T11:39:57.153Z",
+    "principal": null,
+    "interestAmount": null,
+    "fee": null,
+    "penalty": null,
+    "totalAmount": "5000.00",
+    "installmentNumber": "1",
+    "status": "PROCESSING",
+    "useSavedPaymentOption": null,
+    "paymentMethodType": null,
+    "paymentUrl": null,
+    "txnRefNo": null,
+    "url": null,
+    "extensibleData": null
+  }
+```
 
 
 ---
 
 ## /v3/disbursement/triggerDisbursementStatusRequest
+Requests the lender to fetch the status of the disbursement
+
 |Fields    |Type |Origin|comments|mandatory?|
 |----------|:---:|:----:|:------:|---------:|
 |metadata  |Object|LSP||Y|
@@ -261,37 +340,71 @@
 |requestId |String|LSP||Y|
 |payment   |Object|||Y|
 
-
+### Payment
+```
+"payment": {
+    "id": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+    "description": null,
+    "date": null,
+    "principal": null,
+    "interestAmount": null,
+    "fee": null,
+    "penalty": null,
+    "totalAmount": null,
+    "installmentNumber": null,
+    "status": null,
+    "useSavedPaymentOption": null,
+    "paymentMethodType": null,
+    "paymentUrl": null,
+    "txnRefNo": null,
+    "url": null,
+    "extensibleData": null
+  }
+```
 
 
 ---
 
 ## /v3/disbursement/triggerDisbursementStatusResponse
-```
-{
-  "metadata": {
-    "version": "1.0",
-    "timestamp": "2018-12-06T11:39:57.153Z",
-    "traceId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
-    "orgId": "LSP123"
-  },
-  "loanId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
-  "requestId": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
-  "payment": {}
-}
-```
+Fetches the status of the disbursement
+
 |Fields    |Type |Origin|comments|mandatory?|
 |----------|:---:|:----:|:------:|---------:|
 |metadata  |Object|||Y|
-|response  |Object|||Y|
+|response  |Object|Lender||Y|
 |requestId |String|||Y|
-|payment   |Object|||Y|
+|payment   |Object|Lender||Y|
+
+### Payment
+```
+"payment": {
+    "id": "e8cc6822bd4bbb4eb1b9e1b4996fbff8acb",
+    "description": null,
+    "date": "2018-12-06T11:39:57.153Z",
+    "principal": null,
+    "interestAmount": null,
+    "fee": null,
+    "penalty": null,
+    "totalAmount": "5000.00",
+    "installmentNumber": "1",
+    "status": "SUCCESS",
+    "useSavedPaymentOption": null,
+    "paymentMethodType": null,
+    "paymentUrl": null,
+    "txnRefNo": "004618602124",
+    "url": null,
+    "extensibleData": null
+  }
+```
+
 
 
 
 ---
 
 ## /v3/disbursement/getDisbursementPlansRequest
+Requests the lender to fetch the details of the disbursement plan for given loanId
+
 ```
 {
   "metadata": {
@@ -316,6 +429,7 @@
 ---
 
 ## /v3/disbursement/getDisbursementPlansResponse
+Fetches the details of the disbursement plan
 ```
 {
   "metadata": {
@@ -389,13 +503,19 @@
 |metadata  |Object|||Y|
 |response  |Object|Lender||Y|
 |requestId |String|||Y|
-|plans     |List<Object>||List of payment plans|Y|
+|plans     |List<Object>|Lender|List of payment plans|Y|
+
+
+
+
 
 
 
 ---
 
 ## /v3/disbursement/getDisbursementAccountsRequest
+Requests the lender to send the details of the account where the loan will be disbursed
+
 ```
 {
   "metadata": {
@@ -418,6 +538,8 @@
 ---
 
 ## /v3/disbursement/getDisbursementAccountsResponse
+Fetch the details of the account where the loan will be disbursed
+
 ```
 {
   "metadata": {
@@ -452,18 +574,6 @@
 |Fields      |Type |Origin|comments|mandatory?|
 |------------|:---:|:----:|:------:|---------:|
 |metadata    |Object|||Y|
-|response    |Object|||Y|
+|response    |Object|Lender||Y|
 |accountList |List<Object>|||Y|
 |requestId   |String|||Y|
-
-
-### AccountDetails
-|Fields         |Type |Origin|comments|mandatory?|
-|---------------|:---:|:----:|:-------|---------:|
-|id             |String|||N|
-|description    |String|||N|
-|status         |String-enum||ACTIVE, INACTIVE|N|
-|accountDataType|String-enum||ACCOUNT, VPA|Y|
-|data           |Object||schema: AccountDetailsData|Y|
-|url            |String|||N|
-|extensibleData |String|||N|
