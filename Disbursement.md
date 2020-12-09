@@ -1,7 +1,11 @@
 # Disbursement
 
 ## Overview
-The purpose of this API is to set disbursement plan and fetch details regarding the same.
+The objective of Disbursement API is to set disbursement plan and fetch details regarding the same.
+
+![alt text](https://github.com/iSPIRT/OCEN/blob/master/Sequence-Diagram/Disbirsement.PNG "Disbursement")
+
+
 
 ## /v3/disbursement/setDisbursementPlanRequest
 Requests the lender to set a disbursement plan for the given Loan Application Id
