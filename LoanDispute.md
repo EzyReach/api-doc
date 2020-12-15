@@ -70,10 +70,10 @@ The lender responds with the required information against the dipute raised
 ```
 |Fields   |Type |Origin|comments|mandatory?|
 |---------|:---:|:----:|:------:|---------:|
-|metadata |Object|||Y|
-|loanId   |String|||Y|
+|metadata |Object|Lender||Y|
+|loanId   |String|LSP||Y|
 |requestId|String|||Y|
-|dispute  |Object|||Y|
+|dispute  |Object|Lender||Y|
 
 ---
 
