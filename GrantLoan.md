@@ -302,11 +302,11 @@ Requests the lender to grant the loan with given loan application id
 ```
 |Fields          |Type |Origin|comments|mandatory?|
 |----------------|:---:|:----:|:-------|---------:|
-|plans           |List ||schema: paymentPlan|Y|
-|accountDetails  |List |||Y|
+|plans           |List<Object> ||schema: paymentPlan|Y|
+|accountDetails  |List<Object> |||Y|
 
 
-##### accountDetails
+##### AccountDetails
 ```
 "accountDetails": {
       "id": null,

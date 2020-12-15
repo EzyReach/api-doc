@@ -4,6 +4,7 @@
 The purspose of Laon Dispute API is to resolve any arising disputes
 
 ## /v3/loan/dispute/raiseDisputeRequest
+Raises a new dispute
 ```
 {
   "metadata": {
@@ -25,26 +26,27 @@ The purspose of Laon Dispute API is to resolve any arising disputes
 ```
 |Fields   |Type |Origin|comments|mandatory?|
 |---------|:---:|:----:|:------:|---------:|
-|metadata |Object|||Y|
-|loanId   |String|||Y|
-|requestId|String|||Y|
-|dispute  |Object|||Y|
+|metadata |Object|LSP||Y|
+|loanId   |String|LSP|The id of loan for which the dispute is being raised|Y|
+|requestId|String|LSP||Y|
+|dispute  |Object|LSP|The details of the dispute|Y|
 
-### dispute
+### Dispute
 |Fields         |Type |Origin|comments|mandatory?|
 |---------------|:---:|:----:|:------:|---------:|
-|id             |String|||Y|
+|id             |String|Lender||Y|
 |lenderDisputeId|String|||N|
-|lenderId       |String|||Y|
-|loanId         |String|||Y|
-|description    |String|||Y|
-|status         |String-enum||NEW, PROCESSING, NEEDMOREINFO, RESOLVED, CLOSED|Y|
-|url            |String|||N|
+|lenderId       |String|Lender||Y|
+|loanId         |String|LSP||Y|
+|description    |String|LSP||Y|
+|status         |String-enum|Lender|NEW, PROCESSING, NEEDMOREINFO, RESOLVED, CLOSED|Y|
+|url            |String|Lender|URL where dispute progress can be tracked|N|
 |extensibleData |String|||N|
 
 ---
 
 ## /v3/loan/dispute/raiseDisputeResponse
+The lender responds with the required information against the dipute raised
 ```
 {
   "metadata": {
@@ -76,6 +78,7 @@ The purspose of Laon Dispute API is to resolve any arising disputes
 ---
 
 ## /v3/loan/dispute/disputeStatusRequest
+LSP request the Lender to provide the stauts of the dispute with given dispute Id
 ```
 {
   "metadata": {
@@ -96,13 +99,14 @@ The purspose of Laon Dispute API is to resolve any arising disputes
 ```
 |Fields   |Type |Origin|comments|mandatory?|
 |---------|:---:|:----:|:------:|---------:|
-|metadata |Object|||Y|
-|requestId|String|||Y|
-|dispute  |Object|||Y|
+|metadata |Object|LSP||Y|
+|requestId|String|LSP||Y|
+|dispute  |Object|LSP||Y|
 
 ---
 
 ## /v3/loan/dispute/disputeStatusResponse
+Lender sends the status of the dispute with given dispute Id to the LSP
 ```
 {
   "metadata": {
@@ -126,7 +130,7 @@ The purspose of Laon Dispute API is to resolve any arising disputes
 ```
 |Fields          |Type |Origin|comments|mandatory?|
 |---------|:---:|:----:|:------:|---------:|
-|metadata |Object|||Y|
-|response |Object|||Y|
+|metadata |Object|Lender||Y|
+|response |Object|Lender||Y|
 |requestId|String|||Y|
-|dispute  |Object|||Y|
+|dispute  |Object|LSP||Y|
