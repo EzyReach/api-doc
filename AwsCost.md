@@ -9,12 +9,12 @@ For first year, the target is 50 Loan Applications per day, ie. 1500 application
 |RDS (PostgreSQL) |$0.262 per GB-month for multi Zone SSD storage|||
 |SNS              |First 1 million request free, $ 0.5/million req, req size=64kb, SMS cost: $0.00278 per SMS||Nil|    
 |SQS              |First 1 million request free, $ 0.5/million req, req size=64kb||Nil|
-|S3               |$0.025/GB/month for first 50 TB|||
-|AWS Managed Encryption Keys|$0.03 per 10,000 requests|||
-|EC2              |$20.59 for reserved t3.medium instance/month|||
-|AWS Cognito      |$0.015/Active User|||
+|S3               |$0.025/GB/month for first 50 TB               |||
+|AWS Managed Encryption Keys|$0.03 per 10,000 requests           |||
+|EC2              |$20.59 for reserved t3.medium instance/month  |||
+|AWS Cognito      |$0.015/Active User                            |750 active users in first year|$11.25/month|
 |API Gateway      |$1.05/million req for first 300 million req, req size=512kb||$0.0004/month|
-|EKS              |$0.10 per hour for each Amazon EKS|||
+|EKS              |$0.10 per hour for each Amazon EKS            |||
 |AWS Cloud Front  |$0.170/GB/Month for first 10TB, $0.0120 per 10,000 HTTPS req|||
 |AWS Lambda       |Duration charge: $0.0000166667/GB-second, Request charges: $0.20/1M req|||
 |AWS Application Load Balancer|$0.0239 per Application Load Balancer-hour|||
@@ -97,3 +97,16 @@ Key Storage price: $1/month for each custom master key (CMK)
 
 ## 6. AWS Lambda
 The AWS Lambda free usage tier includes 1M free requests per month and 400,000 GB-seconds of compute time per month.
+
+
+## Application Load Balancer
+* $0.0239 per Application Load Balancer-hour (or partial hour)
+* $0.008 per LCU-hour (or partial hour)
+
+
+An LCU contains:
+
+* 25 new connections per second.
+* 3,000 active connections per minute.
+* 1 GB per hour for EC2 instances, containers and IP addresses as targets and 0.4 GB per hour for Lambda functions as targets
+* 1,000 rule evaluations per second
