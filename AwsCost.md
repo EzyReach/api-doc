@@ -9,15 +9,17 @@ For first year, the target is 50 Loan Applications per day, ie. 1500 application
 |RDS (PostgreSQL) |$0.262 per GB-month for multi Zone SSD storage|||
 |SNS              |First 1 million request free, $ 0.5/million req, req size=64kb, SMS cost: $0.00278 per SMS||Nil|    
 |SQS              |First 1 million request free, $ 0.5/million req, req size=64kb||Nil|
-|S3               |$0.025/GB for first 50 TB/month|||
+|S3               |$0.025/GB/month for first 50 TB|||
 |AWS Managed Encryption Keys|$0.03 per 10,000 requests|||
 |EC2              |$20.59 for reserved t3.medium instance/month|||
 |AWS Cognito      |$0.015/Active User|||
 |API Gateway      |$1.05/million req for first 300 million req, req size=512kb||$0.0004/month|
 |EKS              |$0.10 per hour for each Amazon EKS|||
-|AWS WAF - ALB    ||||
-|AWS Cloud Front  ||||
-|AWS Lambda       ||||
+|AWS Cloud Front  |$0.170/GB/Month for first 10TB, $0.0120 per 10,000 HTTPS req|||
+|AWS Lambda       |Duration charge: $0.0000166667/GB-second, Request charges: $0.20/1M req|||
+|AWS Application Load Balancer|$0.0239 per Application Load Balancer-hour|||
+
+
 
 ## 1. EC2
 Price for EC2 instances varies a lot depending upon the type of instance.
@@ -25,13 +27,15 @@ There are following types of instances available:
 
 * On-Demand: No long term commitment needed
 
-* Spot Instances:
+* Spot Instances: Using spare Amazon EC2 computing capacity at discounted price compared to On-Demand instances
 
-* Savings Plan:
+* Savings Plan: Low price EC2 instances for long term commitment
 
-* Reserved Instances: t3.medium (vCPU: 2, Memory: 4GiB)
+* Reserved Instances: Recommened for Applications with steady state usage for long term
 
-* Dedicated hosts:
+* Dedicated hosts: Physical EC2 server dedicated for your use
+
+Assuming that we will use Reserved Instances, the price for Price for t3.medium (vCPU: 2, Memory: 4GiB) is $20.59/month
 
 
 
@@ -74,17 +78,22 @@ Assuming 1500 loan applications per month, the estimated cost is 0.5 req × 750 
 
 
 
-## 4. Amazon Cognito:
+## 4. Amazon Cognito
 Pricing is based on monthly active users (MAU).
 For users who sign in through SAML or OIDC federation, the price for MAUs above the 50 MAU free tier is $0.015/MAU. First 50 MAUs are free.
-There
 There are additional charges for Advanced Security Features.
 
 
 
-## 5. AWS Key Management Service (KMS):
+## 5. AWS Key Management Service (KMS)
 API request to the AWS Key Management Service is as follows:
 * First 20,000 req/month - Free
 * $0.03 per 10,000 requests
 
 Key Storage price: $1/month for each custom master key (CMK)
+
+
+
+
+## 6. AWS Lambda
+The AWS Lambda free usage tier includes 1M free requests per month and 400,000 GB-seconds of compute time per month.
