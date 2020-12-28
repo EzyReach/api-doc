@@ -1,6 +1,9 @@
 # Proposed Microservice Archtecture
 
 ## User Onboarding
+
+![alt text](https://github.com/EzyReach/api-doc/blob/microservices-architecture/Onboarding.png "User Onboarding")
+
 1. User Registration
 * Username and password
 * Preferably, username should be same as user's email id, which can be verified using OTP or verification link. This will help the user to recover his/her account in case he/she forgets the password.
@@ -57,6 +60,8 @@ Inputs required
 ## Domain Object Relationships
 
 #### The following points need clarification:
+
+
 1. Will there be an option for login to admin? If yes, what actions will admin perform?
 
 2. Where will user get AA id? Does he/she need to register on AA app first before registering to LSP app?
