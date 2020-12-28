@@ -12,6 +12,10 @@
 Use JWT token for verifying user sessions
 
 3. Fetching GST invoices
+After successful login, the user will input his/her GSTIN to fetch the eligible invoices.
+
+> Will user's GSTIN be stored in the LSP's database Or has it to be entered every time the user wants to apply for a new loan?
+
 Inputs required
 * GSTIN
 * Start date
@@ -58,6 +62,9 @@ Inputs required
 ```
 
 ## Domain Object Relationships
+
+![alt text](https://github.com/EzyReach/api-doc/blob/microservices-architecture/DomainObjects.PNG "Domain Objects")
+
 
 #### The following points need clarification:
 
