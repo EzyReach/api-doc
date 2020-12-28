@@ -98,7 +98,7 @@ The objective of Loan Application API is to register for a new loan application.
 |lender           |Object|User|User may choose from  list of availbale lenders|N|
 
 
-#### borrower
+#### 1. Borrower
 ```
 "borrower": {
         "primaryId": "CPAA1234A",
@@ -188,7 +188,7 @@ The objective of Loan Application API is to register for a new loan application.
 
 
 
-#### documents
+##### Documents
 ```
 "documents": [
           {
@@ -213,7 +213,85 @@ The objective of Loan Application API is to register for a new loan application.
 |data            |String|LSP||Base64 encoded String|Y|
 
 
-#### collateral
+Document data Base64 decoded
+```
+{
+  "stjCd":"AP003",
+  "lgnm":"MS CORPORATION",
+  "stj":"BCP KODIKONDA",
+  "dty":"Regular",
+  "cxdt":"",
+  "gstin":"05ABNTY3290P8ZA",
+  "nba":["Bonded Warehouse","EOU / STP / EHTP","Factory / Manufacturing","Input Service Distributor (ISD)",
+  "Leasing Business"],
+  "lstupdt":"05/01/2017",
+  "rgdt":"05/05/2017",
+  "ctb":"Foreign LLP",
+  "sts":"Provisional",
+  "ctjCd":"AP004",
+  "ctj":"BCP THUMMAKUNTA",
+  "tradeNam":"ALTON PLASTIC PRIVATE LTD",
+  "adadr":[
+    {
+      "addr":{
+        "bnm":"ELPHINSTONE BUILDING",
+        "st":"10, VEER NARIMAN ROAD",
+        "loc":"FORT",
+        "bno":"10",
+        "stcd":"Rajasthan",
+        "flno":"1ST FLOOR",
+        "lt":"74.2179",
+        "lg":"27.0238",
+        "pncd":"400001"
+        },
+      "ntr":["Wholesale Business"]
+    }
+  ],
+  "pradr":{
+    "addr":{
+      "bnm":"KATGARA HOUSE","st":"15,L JAGMOHANDAS MARG",
+      "loc":"MALABAR HILL",
+      "bno":"5",
+      "stcd":"Maharashtra",
+      "flno":"4TH FLOOR",
+      "lt":"74.2179",
+      "lg":"27.0238",
+      "pncd":"400006"
+     },
+     "ntr":["Wholesale Business"]
+  }
+}
+```
+The above response sample is actually the same as response sample returned from the following url:
+**GET** https://api-domain-name/commonapi/v1.1/search
+[GST Search Taxpayer API](https://developer.gst.gov.in/apiportal/taxpayer/other/apilist/v1.1 "GST Develpoer Portal")
+
+|Error codes |Error Description|
+|------      |:----------------|
+|FO8001      |Malformed Request|
+|FO8007      |Invalid GSTIN/UIN|
+
+|Fields  |Type |Origin|comments|mandatory?|
+|------  |:---:|:----:|:-------|---------:|
+|stjCd   |String||State Jurisdiction Code||
+|lgnm    |String||Legal Name of Business||
+|stj     |String||State Jurisdiction||
+|dty     |String||Taxpayer type||
+|cxdt    |Date||Date Of Cancellation||
+|gstin   |String||GSTIN of the Tax Payer||
+|nba     |String||Nature of Business Activity ||
+|lstupdt |Date||Last Updated Date||
+|rgdt    |Date||Date of Registration||
+|ctb     |String||Constitution of Business||
+|sts     |String||GSTN status||
+|ctjCd   |String||Centre Jurisdiction Code||
+|ctj     |String||Centre Jurisdiction||
+|tradeNam|String||Trade Name||
+|adadr   |Object||Additional Place of Business Fields||
+|pradr   |Object||Pricipal Place of Business fields||
+
+
+#### 2. Collateral
 ```
 "collaterals": [
         {
@@ -258,6 +336,44 @@ The objective of Loan Application API is to register for a new loan application.
 |url                    |String|User||N|
 |extensibleData         |String|||N|
 
+Document data Base64 decoded
+```
+{
+  "ctin":"01AABCE2207R1Z5",
+  "cfs":"Y",
+  "inv":[
+    {
+      "chksum":"BBUIBUIUIJKKBJKGUYFTFGUY",
+      "updby":"S",
+      "inum":"S008400",
+      "idt":"24-11-2016",
+      "val":729248.16,
+      "pos":"06",
+      "rchrg":"N",
+      "etin":"01AABCE5507R1Z4",
+      "inv_typ":"R",
+      "cflag":"N",
+      "diff_percent":0.65,
+      "opd":"2016-12",
+      "itms":[
+        {
+          "num":1,
+          "itm_det":{
+            "rt":5,
+            "txval":10000,
+            "iamt":325,
+            "camt":0,
+            "samt":0,
+            "csamt":10
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+
 
 ##### valuation
 |Fields        |Type |Origin|comments|mandatory?|
@@ -270,7 +386,7 @@ The objective of Loan Application API is to register for a new loan application.
 |extensibleData|String||N|
 
 
-#### applicants
+#### 3. Applicants
 ```
 "applicants": [
         {
@@ -299,7 +415,7 @@ The objective of Loan Application API is to register for a new loan application.
 |relationshipWithBorrower|String   |User||N|
 
 
-### guarantors
+#### 4. Guarantors
 |Fields                  |Type        |Origin|comments|mandatory?|
 |------                  |:----------:|:----:|:-------|---------:|
 |priamryId               |String      |LSP||Y|
@@ -311,14 +427,14 @@ The objective of Loan Application API is to register for a new loan application.
 |documents               |List<Object>|User||Y|
 |name                    |String      |User||N|
 
-### additionalIdentifier
+#### 5. AdditionalIdentifier
 |Fields                  |Type |Origin|comments|mandatory?|
 |------                  |:---:|:----:|:-------|---------:|
 |id                      |String|USER||Y|
 |additionalIdentifierType|String-enum|USER|PAN, MOBILE, AADHAR|Y|
 
 
-### termDetails (schema of terms)
+#### 6. TermDetails (schema of terms)
 ```
 "terms": {
         "requestedAmount": "50000.00",
@@ -353,20 +469,20 @@ The objective of Loan Application API is to register for a new loan application.
 |url             |String|||N|
 |extensibleData  |String|||N|
 
-#### tenure
+##### A. Tenure
 |Fields   |Type |Origin|comments|mandatory?|
 |------   |:---:|:----:|:-------|---------:|
 |duration |int|||Y|
 |unit     |String-enum||DAY, MONTH, YEAR|Y|
 
-#### legalAgreement
+##### B. LegalAgreement
 |Fields|Type |Origin|comments|mandatory?|
 |------|:---:|:----:|:-------|---------:|
 |type  |String-enum||TEXT, URL|Y|
 |data  |String||Base64 encoded String|Y|
 
 
-### offer
+#### 7. Offer
 |Fields|Type |Origin|comments|mandatory?|
 |------|:---:|:----:|:-------|---------:|
 |type  |String-enum||TEXT, URL|Y|
