@@ -72,12 +72,15 @@ Inputs required
 1. Will there be an option for login to admin? If yes, what actions will admin perform?
 
 2. Where will user get AA id? Does he/she need to register on AA app first before registering to LSP app?
+Also note that AA id is not reusable across multiple AA
+[Reference](https://sahamati.org.in/faq/ "Sahamati FAQ")
+
 
 3. Format of response payload from AA?
 
 4. Will AA directly send user details to Lender? If yes, then where would the data to be sent in createLoanApplication come from?
 
-5. What is the "document" sent in createLoanApplication?
+5. What is the "document" sent in createLoanApplication as a field of Borrower?
 
 > Base64 encoded
 ```
