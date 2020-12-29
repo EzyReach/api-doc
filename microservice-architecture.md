@@ -24,47 +24,56 @@ Inputs required
 * Start date
 * End date
 
-**GET** https://<domain-name>/v0.2/taxpayerapi/payment
-[Get Challan History API](https://developer.gst.gov.in/apiportal/taxpayer/paymentapi/apilist/v0.2 "GST Develpoer Portal")
+**GET** https://<domain-name>/taxpayerapi/v2.1/returns/gstr1
+**URL Parameters**  action_required="Y/N", gstin={}, ret_period={},ctin={}, from_time={}
+[Get Challan History API](https://developer.gst.gov.in/apiportal/taxpayer/returns/apilist/v2.1 "GST Develpoer Portal")
 
 ```
 {
-  "challanList": [
-    [
-      {
-        "total_amt": 1,
-        "chln_exp_dt": "03/05/2017",
-        "payment_dt": "18/04/2017",
-        "payment_tim": "10:05:29",
-        "cpin": "17042400000290",
-        "chln_cre_dt": "18/04/2017 09:58:13",
-        "payment_mod": "EPY",
-        "status": "S"
-      },
-      {
-        "total_amt": 1,
-        "chln_exp_dt": "03/05/2017",
-        "payment_dt": "18/04/2017",
-        "payment_tim": "10:10:14",
-        "cpin": "17042400000291",
-        "chln_cre_dt": "18/04/2017 10:06:02",
-        "payment_mod": "EPY",
-        "status": "S"
-      },
-      {
-        "total_amt": 100,
-        "chln_exp_dt": "04/05/2017",
-        "cpin": "17042400000310",
-        "chln_cre_dt": "19/04/2017 16:13:14",
-        "payment_mod": "EPY",
-        "status": "N"
-      }
-    ]
+  "b2b": [
+    {
+      "ctin": "01AABCE2207R1Z5",
+      "cfs": "Y",
+      "inv": [
+        {
+          "chksum": "BBUIBUIUIJKKBJKGUYFTFGUY",
+          "updby": "S",
+          "inum": "S008400",
+          "idt": "24-11-2016",
+          "val": 729248.16,
+          "pos": "06",
+          "rchrg": "N",
+          "etin": "01AABCE5507R1Z4",
+          "inv_typ": "R",
+          "cflag": "N",
+          "diff_percent": 0.65,
+          "opd": "2016-12",
+          "srctyp": "EInvoice",
+          "irn": "897ADG56RTY78956HYUG90BNHHIJK453GFTD99845672FDHHHSHGFH4567FG56TR",
+          "irngendate": "24-12-2019",
+          "itms": [
+            {
+              "num": 1,
+              "itm_det": {
+                "rt": 5,
+                "txval": 10000,
+                "iamt": 325,
+                "camt": 0,
+                "samt": 0,
+                "csamt": 10
+              }
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
 ```
 
 ## Domain Object Relationships
+
+![alt text](https://github.com/EzyReach/api-doc/blob/microservices-architecture/User_er.PNG "User Entity Relationship")
 
 ![alt text](https://github.com/EzyReach/api-doc/blob/microservices-architecture/DomainObjects.PNG "Domain Objects")
 
