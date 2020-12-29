@@ -70,20 +70,29 @@ Inputs required
   ]
 }
 ```
-|Fields      |Type |Origin|Description|mandatory?|
-|------------|:---:|:----:|:----------|---------:|
-|chksum      |||Invoice Check sum value ||
-|updby       |||Uploaded by||
-|inum        |||Supplier Invoice Number||
-|idt         |||Supplier Invoice Date||
-|val         |||Supplier Invoice Value||
-|pos         |||Place of supply||
-|rchrg       |||Reverse Charge||
-|etin        |||EcomOperator||
-|inv_type    |||Invoice type||
-|cflag       |||Counter Party Flag||
-|diff_percent|||Differential percentage||
-|opd         |||Original Period||
+
+### b2b invoice
+|Fields |Type |Origin|Description|mandatory?|
+|-------|:---:|:----:|:----------|---------:|
+|ctin   |Alphanumeric with 15 characters||GSTIN/UID of the Receiver taxpayer/UN, Govt Bodies||
+|cfs    |Character (Y/N)||GSTR2 filing status of counter party||
+|inv    |List<Object>||Invoice Details||
+
+### invoice
+|Fields      |Type       |Origin|Description|mandatory?|
+|------------|:---------:|:----:|:----------|---------:|
+|chksum      |String (Max length:64)||Invoice Check sum value ||
+|updby       |Character||Uploaded by||
+|inum        |String (Max length:16)||Supplier Invoice Number||
+|idt         |Datetime||Supplier Invoice Date||
+|val         |Decimal(15,2)||Supplier Invoice Value||
+|pos         |String(Max length:2)||Place of supply||
+|rchrg       |Character||Reverse Charge||
+|etin        |Alphanumeric with 15 characters||EcomOperator||
+|inv_type    |String (Max length: 5) (R/SEWP/SEWOP/DE/CBW)||Invoice type||
+|cflag       |Two Character(A/R/M/N/U/P/DF/FR)||Counter Party Flag||
+|diff_percent|Decimal (3,2)||Differential percentage||
+|opd         |YYYY-MM||Original Period||
 |items       |List<Object>||Items||
 
 ### itm
@@ -93,9 +102,9 @@ Inputs required
 |itm_det     |Object||Item Details||
 
 ### ite_det
-|Fields|Type |Origin|Description|mandatory?|
-|------|:---:|:----:|:----------|---------:|
-|rt    |Decimal(3,2)||rate||
+|Fields|Type         |Origin|Description|mandatory?|
+|------|:-----------:|:----:|:----------|---------:|
+|rt    |Decimal(3,2) ||rate||
 |txval |Decimal(11,2)||Taxable value of Goods or Service as per invoice||
 |iamt  |Decimal(11,2)||IGST Amount as per invoice||
 |camt  |Decimal(11,2)||SGST Amount as per invoice||
