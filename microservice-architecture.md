@@ -70,6 +70,37 @@ Inputs required
   ]
 }
 ```
+|Fields      |Type |Origin|Description|mandatory?|
+|------------|:---:|:----:|:----------|---------:|
+|chksum      |||Invoice Check sum value ||
+|updby       |||Uploaded by||
+|inum        |||Supplier Invoice Number||
+|idt         |||Supplier Invoice Date||
+|val         |||Supplier Invoice Value||
+|pos         |||Place of supply||
+|rchrg       |||Reverse Charge||
+|etin        |||EcomOperator||
+|inv_type    |||Invoice type||
+|cflag       |||Counter Party Flag||
+|diff_percent|||Differential percentage||
+|opd         |||Original Period||
+|items       |List<Object>||Items||
+
+### itm
+|Fields      |Type |Origin|Description|mandatory?|
+|------------|:---:|:----:|:----------|---------:|
+|num         |int||Serial no||
+|itm_det     |Object||Item Details||
+
+### ite_det
+|Fields|Type |Origin|Description|mandatory?|
+|------|:---:|:----:|:----------|---------:|
+|rt    |Decimal(3,2)||rate||
+|txval |Decimal(11,2)||Taxable value of Goods or Service as per invoice||
+|iamt  |Decimal(11,2)||IGST Amount as per invoice||
+|camt  |Decimal(11,2)||SGST Amount as per invoice||
+|csamt |Decimal(11,2)||cess Amount as per invoice||
+
 
 ## Domain Object Relationships
 
