@@ -1,6 +1,9 @@
 # Proposed Microservice Archtecture
+The documents lists all the steps required for an user to avail loan through EzyReach and tries to purpose an structure for the microservices required 
+
 
 ## User Onboarding
+The first step in the process of availing loan through an LCP would be user registration.
 
 ![alt text](https://github.com/EzyReach/api-doc/blob/microservices-architecture/Onboarding.png "User Onboarding")
 
@@ -9,10 +12,10 @@
 * Preferably, username should be same as user's email id, which can be verified using OTP or verification link. This will help the user to recover his/her account in case he/she forgets the password.
 
 2. User Login
-Use JWT token for verifying user sessions
+* Use JWT token for verifying user sessions
 
 3. Fetching GST invoices
-After successful login, the user will input his/her GSTIN to fetch the eligible invoices.
+* After successful login, the user will input his/her GSTIN to fetch the eligible invoices.
 
 > Will user's GSTIN be stored in the LSP's database Or has it to be entered every time the user wants to apply for a new loan?
 
@@ -211,3 +214,5 @@ The above response sample is actually the same as response sample returned from 
   ]
 }
 ```
+
+
