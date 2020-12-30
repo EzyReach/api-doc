@@ -264,7 +264,8 @@ Document data Base64 decoded
 ```
 The above response sample is actually the same as response sample returned from the following url:
 **GET** https://api-domain-name/commonapi/v1.1/search
-[GST Search Taxpayer API](https://developer.gst.gov.in/apiportal/taxpayer/other/apilist/v1.1 "GST Develpoer Portal")
+**URL Parameters** gstin={}&action={}
+[GST Search Taxpayer API](https://developer.gst.gov.in/apiportal/taxpayer/other/apilist/v1.1 "GST Develpoer Portal") 
 
 |Error codes |Error Description|
 |------      |:----------------|
