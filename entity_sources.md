@@ -48,7 +48,7 @@ There are three sources of information:
 
 |Fields                 |Source|Comment|
 |-----------------------|:----:|:------|
-|collateralPrimaryId    |GST   |Format - <GSTIN>_<INVOICENUM>|
+|collateralPrimaryId    |GST   |Format: (GSTIN)_(INVOICENUM)|
 |collateralPrimaryIdType|LSP   |Harcoded as GST_INVOICE|
 |type                   |LSP   |Harcoded as GST_INVOICE
 |documents              |GST   |B2B GST Invoice|
