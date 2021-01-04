@@ -9,15 +9,44 @@ The first step in the process of availing loan through an LCP would be user regi
 
 1. User Registration
 * Username and password
-* Preferably, username should be same as user's email id, which can be verified using OTP or verification link. This will help the user to recover his/her account in case he/she forgets the password.
+* Username would be same as user's email id, which will be verified using OTP or verification link. This will help the user to recover his/her account in case he/she forgets the password.
+
+Steps for user registraion:
+* User will enter username (email) and password.
+* The application will verify if the username entered is unique or not. If the username already exists in the system, it will throw an error. If it is unique, a temperory user_entity will be created (this object will not be stored in the database). The user will be requested to check their email
+* Upon clicking on the verification link, or entering the OTP, the user will be verified and the details will be stored in the database
 
 2. User Login
 * Use JWT token for verifying user sessions
 
-3. Fetching GST invoices
-* After successful login, the user will input his/her GSTIN to fetch the eligible invoices.
+3. User profiling (Borrower's details)
+After successful login, the user will input his/her GSTIN. User's getails would be fetched from GST portal and would be mapped according to Borrower's attributes in OCEN specifications
 
-> Will user's GSTIN be stored in the LSP's database Or has it to be entered every time the user wants to apply for a new loan?
+Mapping between data fetched from GST and data required for Borrower's profiling
+
+|Field from GST|Type |Description|Field in Borrower's address|Type |Description|
+|---------------|:---:|:---------:|:----------------------|:---:|:---------:|
+|bnm |String|building name|hba      |String|House/Building/Apartment|
+|st  |String|street       |srl      |String|Street/Road/Lane        |
+|loc |String|location     |als      |String|Area/Locality/Sector    |
+|bno |String|door number  |         |String||
+|stcd|String|state name   |state    |String||
+|flno|String|floor number |         |String||
+|lt  |String|lattitude    |lattitude|String||
+|lg  |String|longitude    |longitude|String||
+|pncd|String|pincode      |pincode  |String||
+|    |      |             |co       |String|care of                  |
+|    |      |             |landmark |String||
+|    |      |             |vtc      |String|Village/Town/City        |
+|    |      |             |po       |String||
+|    |      |             |district |String||
+|    |      |             |         |String|country                  |
+|    |      |             |url      |String|digital address          |
+
+
+
+3. Fetching GST invoices
+* After successful login, upon user's request eligible invoices will be fetched from GSTIN.
 
 Inputs required
 * GSTIN
@@ -61,6 +90,183 @@ Inputs required
                 "camt": 0,
                 "samt": 0,
                 "csamt": 10
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+```
+{
+  "gstin": "01AABCE2207R1Z5",
+  "fp": "052020",
+  "b2b": [
+    {
+      "ctin": "01AABCE2207R1Z5",
+      "trdname": "E-Invoicer",
+      "inv": [
+        {
+          "chksum": "BBUIBUIUIJKKBJKGUYFTFGUY",
+          "inum": "S008400",
+          "idt": "24-11-2016",
+          "val": 729248.16,
+          "pos": "06",
+          "rchrg": "N",
+          "etin": "01AABCE5507R1C4",
+          "inv_typ": "R",
+          "srctyp": "e-Invoice",
+          "irn": "897ADG56RTY78956HYUG90BNHHIJK453GFTD99845672FDHHHSHGFH4567FG56TR",
+          "irngendate": "24-12-2019",
+          "einvstatus": "ACT",
+          "autodft": "Auto-populated",
+          "autodftdt": "24-12-2019",
+          "errorCd": "null",
+          "errorMsg": "null",
+          "itms": [
+            {
+              "num": 1,
+              "itm_det": {
+                "rt": 5,
+                "txval": 10000,
+                "iamt": 325,
+                "camt": 0,
+                "samt": 0,
+                "csamt": 10
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "cdnur": [
+    {
+      "chksum": "ASDFGJKLPTBBJKBJKBBJKBB",
+      "typ": "B2CL",
+      "ntty": "C",
+      "nt_num": "533515",
+      "nt_dt": "23-09-2016",
+      "val": 123123,
+      "pos": "03",
+      "srctyp": "e-Invoice",
+      "irn": "897ADG56RTY78956HYUG90BNHHIJK453GFTD99845672FDHHHSHGFH4567FG56TR",
+      "irngendate": "24-12-2019",
+      "einvstatus": "ACT",
+      "autodft": "Auto-population failed",
+      "autodftdt": "24-12-2019",
+      "errorCd": "RT123",
+      "errorMsg": "Error in AutoDraft",
+      "itms": [
+        {
+          "num": 1,
+          "itm_det": {
+            "rt": 10,
+            "txval": 5225.28,
+            "iamt": 845.22,
+            "csamt": 789.52
+          }
+        }
+      ]
+    }
+  ],
+  "exp": [
+    {
+      "exp_typ": "WPAY",
+      "inv": [
+        {
+          "chksum": "ASDFGJKLPTBBJKBJKBBJKBB",
+          "inum": "81542",
+          "idt": "12-02-2016",
+          "val": 995048.36,
+          "sbpcode": "ASB991",
+          "sbnum": "7896542",
+          "sbdt": "04-10-2016",
+          "srctyp": "e-Invoice",
+          "irn": "897ADG56RTY78956HYUG90BNHHIJK453GFTD99845672FDHHHSHGFH4567FG56TR",
+          "irngendate": "24-12-2019",
+          "einvstatus": "ACT",
+          "autodft": "Auto-population failed",
+          "autodftdt": "24-12-2019",
+          "errorCd": "RT123",
+          "errorMsg": "Error in AutoDraft",
+          "itms": [
+            {
+              "txval": 10000,
+              "rt": 5,
+              "iamt": 833.33,
+              "csamt": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "exp_typ": "WOPAY",
+      "inv": [
+        {
+          "chksum": "ASDFGJKLPTBBJKBJKBBJKBB",
+          "inum": "81542",
+          "idt": "12-02-2016",
+          "val": 995048.36,
+          "sbpcode": "ASB881",
+          "sbnum": "7896542",
+          "sbdt": "04-10-2016",
+          "srctyp": "e-Invoice",
+          "irn": "897ADG56RTY78956HYUG90BNHHIJK453GFTD99845672FDHHHSHGFH4567FG56TR",
+          "irngendate": "24-12-2019",
+          "einvstatus": "ACT",
+          "autodft": "Auto-population failed",
+          "autodftdt": "24-12-2019",
+          "errorCd": "null",
+          "errorMsg": "null",
+          "itms": [
+            {
+              "txval": 10000,
+              "rt": 5,
+              "iamt": 325,
+              "csamt": 100
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "cdnr": [
+    {
+      "ctin": "01AAAAP1208Q1ZS",
+      "trdname": "E-Invoicer",
+      "nt": [
+        {
+          "chksum": "adsdsfsjskssssq",
+          "ntty": "C",
+          "nt_num": "533515",
+          "nt_dt": "23-09-2016",
+          "val": 123123,
+          "pos": "03",
+          "rchrg": "Y",
+          "inv_typ": "DE",
+          "srctyp": "e-Invoice",
+          "irn": "897ADG56RTY78956HYUG90BNHHIJK453GFTD99845672FDHHHSHGFH4567FG56TR",
+          "irngendate": "24-12-2019",
+          "einvstatus": "ACT",
+          "autodft": "Auto-population failed",
+          "autodftdt": "24-12-2019",
+          "errorCd": "RT123",
+          "errorMsg": "Error in AutoDraft",
+          "itms": [
+            {
+              "num": 1,
+              "itm_det": {
+                "rt": 10,
+                "txval": 5225.28,
+                "iamt": 845.22,
+                "camt": 0,
+                "samt": 0,
+                "csamt": 789.52
               }
             }
           ]
@@ -120,17 +326,6 @@ Inputs required
 
 #### The following points need clarification:
 
-
-1. Will there be an option for login to admin? If yes, what actions will admin perform?
-
-2. Where will user get AA id? Does he/she need to register on AA app first before registering to LSP app?
-Also note that AA id is not reusable across multiple AA
-[Reference](https://sahamati.org.in/faq/ "Sahamati FAQ")
-
-
-3. Format of response payload from AA?
-
-4. Will AA directly send user details to Lender? If yes, then where would the data to be sent in createLoanApplication come from?
 
 5. What is the "document" sent in createLoanApplication as a field of Borrower?
 
@@ -222,8 +417,6 @@ The above response sample is actually the same as response sample returned from 
 |adadr   |Object||Additional Place of Business Fields||
 |pradr   |Object||Pricipal Place of Business fields||
 
-6. Borrower details fetched from GST invoices do not match to the details to be sent with createLoanApplication (contact details etc). Does the borrow manually need to enter these details?
-
 
 7. What is document sent as a part of collateral?
 
@@ -264,4 +457,51 @@ The above response sample is actually the same as response sample returned from 
 }
 ```
 
+The above response is same as the response recieved from the folllowing: 
 
+**GET** https://<domain-name>/taxpayerapi/v2.1/returns/gstr1
+**URL Parameters**  action_required="Y/N", gstin={}, ret_period={},ctin={}, from_time={}
+[Get Challan History API](https://developer.gst.gov.in/apiportal/taxpayer/returns/apilist/v2.1 "GST Develpoer Portal")
+
+```
+{
+  "b2b": [
+    {
+      "ctin": "01AABCE2207R1Z5",
+      "cfs": "Y",
+      "inv": [
+        {
+          "chksum": "BBUIBUIUIJKKBJKGUYFTFGUY",
+          "updby": "S",
+          "inum": "S008400",
+          "idt": "24-11-2016",
+          "val": 729248.16,
+          "pos": "06",
+          "rchrg": "N",
+          "etin": "01AABCE5507R1Z4",
+          "inv_typ": "R",
+          "cflag": "N",
+          "diff_percent": 0.65,
+          "opd": "2016-12",
+          "srctyp": "EInvoice",
+          "irn": "897ADG56RTY78956HYUG90BNHHIJK453GFTD99845672FDHHHSHGFH4567FG56TR",
+          "irngendate": "24-12-2019",
+          "itms": [
+            {
+              "num": 1,
+              "itm_det": {
+                "rt": 5,
+                "txval": 10000,
+                "iamt": 325,
+                "camt": 0,
+                "samt": 0,
+                "csamt": 10
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```

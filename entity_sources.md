@@ -13,18 +13,20 @@ There are three sources of information:
 
 |Fields   |Source|Comment|
 |---------|:----:|:------|
+|user_id  |LSP   |UUID|
 |username |USER  |username is same as user's email|
-|password |USER  |Stored in encrypted format|
-|mobile   |USER  ||
+|password |USER  |Stored after hashing|
+|mobile   |USER  |Optional|
 
 
 
 ### B. User profiling (Borrower's details)
-User type - 
+User type - GSTIN based
 
-|Fields        |Source|Comment|
-|--------------|:----:|:------|
-|gstin         |USER  ||
+|Fields        |Source |Comment|
+|--------------|:-----:|:------|
+|borrower_id   |LSP    |UUID|
+|gstin         |USER   ||
 |primary id    |Unknown|Either USER or GST|
 |primaryIdType |Unknown|PAN, AADHAR, MOBILE - Either USER or GST|
 |name          |Unknown|Either USER or GST|
