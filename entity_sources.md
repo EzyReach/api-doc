@@ -9,29 +9,34 @@ There are three sources of information:
 
 ## 1. User Onboarding
 
+### A. User SignUp
+
 |Fields   |Source|Comment|
 |---------|:----:|:------|
 |username |USER  |username is same as user's email|
-|password |USER  |
-|mobile   |USER  |
+|password |USER  |Stored in encrypted format|
+|mobile   |USER  ||
 
 
 
-## 2. User profiling (Borrower)
+### B. User profiling (Borrower's details)
+User type - 
 
 |Fields        |Source|Comment|
 |--------------|:----:|:------|
 |gstin         |USER  ||
 |primary id    |Unknown|Either USER or GST|
 |primaryIdType |Unknown|PAN, AADHAR, MOBILE - Either USER or GST|
-|name          |Unknown|Either USER or GST
+|name          |Unknown|Either USER or GST|
 |category      |LSP    |Category to be hardcoded as ORGANIZATION|
 |Contact detail|Unknown|Either USER or GST|
 |documents     |GST|   ||
 
 
 
-## 3. Loan Application
+## 2. Create Loan Application
+
+### A. LoanApplication
 
 |Fields           |Source|Comment|
 |-----------------|:----:|:------|
@@ -44,7 +49,7 @@ There are three sources of information:
 
 
 
-## 4. Collateral
+### B. Collateral
 
 |Fields                 |Source|Comment|
 |-----------------------|:----:|:------|
@@ -55,9 +60,11 @@ There are three sources of information:
 
 
 
-## Terms
+### C. Terms
 
 |Fields           |Source|Comment|
 |-----------------|:----:|:------|
 |requestedAmount  |USER  ||
 |currency         |LSP   |Hardcoded as INR|
+
+
