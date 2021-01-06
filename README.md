@@ -15,4 +15,4 @@
 
 #  Signup Process
 
-    ![Provisioning Flow](UserProvisioning_EzyReach.png)
+    ![Provisioning Flow](https://github.com/EzyReach/api-doc/blob/user-onboarding-doc/images/UserProvisioning_EzyReach.png)
