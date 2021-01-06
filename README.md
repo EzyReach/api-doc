@@ -15,4 +15,4 @@
 
 #  Signup Process
 
-    ![Provisioning Flow] (images/UserProvisioning_EzyReach.png)
+    ![Provisioning Flow] (./images/UserProvisioning_EzyReach.png)
