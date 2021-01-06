@@ -36,4 +36,4 @@
 
 See below sequence flow for above:
 
-![Sequence Flow](/images/User_Provisioning sequence.png)
+![Sequence Flow](/images/User_Provisioning_sequence.png)
