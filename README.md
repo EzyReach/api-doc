@@ -1,6 +1,6 @@
 # User Onboarding API
 #  Signup Process
-    [Signup Flow](images/UserProvisioning_EzyReach.png)
+    ![Signup Flow](/images/UserProvisioning_EzyReach.png)
 ## Overview
   The objective of Onboarding process is to create user in the user pool using AWS Cognito, verify the primary mode of the authentication and subsequently enriching user profile.
   In the current scenario:
@@ -32,4 +32,4 @@
 -   Once user data is obtained a new record will be created in the user_profile record
 
 See below sequence flow for above:
-    [Sequence Flow](images/User_Provisioning _sequence.png)
+    ![Sequence Flow](/images/User_Provisioning _sequence.png)
