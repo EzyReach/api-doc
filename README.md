@@ -18,16 +18,16 @@
 ## User Registration
 -   User provides user information which includes:
     -   email address, Phone no, password
--   API Gateway signup proxy will delegate the request to Cognito to validate the user email.
+-   API Getway signup proxy will delegate the request to Cognito to validate the user email.
 -   Cognito will use AWS Simple Email Service(SES) to send a code to the user email account
 ## User Identity verify & User Creation
 -   Once user confirms the email code via API Gateway proxy (/signup/confirm),Cognito will create the user
--   Once done , user will be redirected to login page and thus obtaining id_token and access_token
+-   Once done , user will be redirected to login page and thus obtailing id_token and access_token
 
 ## User Profile Create
 -   User now can enter his GSTN no.This will be handled by API Gateway proxy /user/profile
 -   The proxy will first verify the access token via cognito
--   It will fetch user details such as userName, email, phoneNo and will connect to provisioning micro service.
+-   It will fetch user details such as userName, email,phoneNo and will connect to provisioning microservice.
 -   The Provisioning MS will request data from the GSTN API
 -   Once user data is obtained a new record will be created in the user_profile record
 
