@@ -14,5 +14,5 @@
        - Update user profile (In case of OCEN, it will talk to GST API)
 
 #  Signup Process
-    ./images/UserProvisioning_EzyReach.png
-    
+
+    ![Provisioning Flow] (images/UserProvisioning_EzyReach.png)
